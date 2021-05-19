@@ -3,6 +3,8 @@ import librosa
 import numpy as np
 from spleeter.separator import Separator
 
+from exceptions.split_exception import SplitException
+
 
 class AudioSplitter:
     def __init__(self, out_folder, seconds_per_segment):
@@ -29,5 +31,5 @@ class AudioSplitter:
             sf.write("{}/clean_vocals.wav".format(path_to_dir), np.array(result), sr)
             return True
         else:
-            raise Exception(
+            raise SplitException(
                 "Not enough vocal information to process. The audio is too quiet or does not contain any vocals.")

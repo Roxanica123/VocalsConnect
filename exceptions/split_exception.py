@@ -1,0 +1,2 @@
+class SplitException(Exception):
+    pass

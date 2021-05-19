@@ -2,6 +2,7 @@ import tensorflow as tf
 from multiprocessing import Pool
 import librosa
 
+from exceptions.split_exception import SplitException
 from predictions_system.feature_extraction.feature_function import FeatureFunction
 from predictions_system.feature_extraction.segment_splitter import SegmentsSplitter
 
@@ -17,7 +18,7 @@ class FeaturesExtractor:
         y, sr = librosa.load("{}/clean_vocals.wav".format(path), self.load_sample_rate)
         segments = self.segments_splitter.split(y, sr)
         if segments is None:
-            raise Exception("Not enough vocal information to process")
+            raise SplitException("Not enough vocal information to process")
         with Pool(4) as p:
             results = p.map(self.get_features, segments)
             return results
