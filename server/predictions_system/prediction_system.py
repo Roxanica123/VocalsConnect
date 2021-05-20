@@ -16,7 +16,7 @@ from predictions_system.model.kdtree import KDTree
 class PredictionSystem:
     def __init__(self, input_shape, output_size, load_path_weights, out_folder: str, feature_function: FeatureFunction,
                  predictions_path, genres_mapping, seconds_per_segment: int = 15, number_of_neighbours_per_segment=3,
-                 additional_segments_seconds_delay: List[int] = None, load_sample_rate=22050, number_of_neighbours=10):
+                 additional_segments_seconds_delay: List[int] = None, load_sample_rate=22050, number_of_neighbours=12):
         self.input_shape = input_shape
         self.output_size = output_size
         self.load_path_weights = load_path_weights
@@ -38,7 +38,7 @@ class PredictionSystem:
         predictions = CNNLSTMModel(input_shape=self.input_shape, output_size=self.output_size,
                                    load_path_weights=self.load_path_weights).predict(tf.stack(features))
         similar_ids = self.tree.get_neighbours(predictions)
-        similar_ids = ["spotify:track:" + similar_id for similar_id in similar_ids]
+        similar_ids = ["https://open.spotify.com/embed/track/" + similar_id for similar_id in similar_ids]
         prediction_mapped = [self.genres_mapping[np.argmax(prediction)] for prediction in predictions]
         self.remove_temporary_files(path, filename)
         return {"genre_predictions": list(set(prediction_mapped)), "similar_songs_ids": list(set(similar_ids))}
