@@ -33,8 +33,8 @@ const useStyles = (theme) => ({
   },
   text: {
     margin: "20px 0px",
-    backgroundColor: theme.palette.primary.mint,
-    color: theme.palette.primary.dark,
+    backgroundColor: theme.palette.secondary.main,
+    color: "#fff5ee",
     boxShadow: "6px 6px 15px 0px rgba(255,245,238,0.43)",
     width: "100%",
     height: "20%",
@@ -63,7 +63,7 @@ class ResultsContainer extends Component {
     return (
       <Grid container className={classes.grid}>
         <Card container className={classes.text}>
-          <Typography align="center" variant="h4">
+          <Typography align="center" variant="h5">
             The predicted genres were: {genres}.<br />
             Here are the most similar songs in our dataset:
           </Typography>

@@ -3,6 +3,7 @@ import UploadFileForm from "./upload-page/UploadFileForm";
 import ResultsContainer from "./results-page/ResultsContainer";
 import Card from "@material-ui/core/Card";
 import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/styles";
 
 const useStyles = (theme) => ({
@@ -10,22 +11,31 @@ const useStyles = (theme) => ({
     background: theme.palette.primary.baby,
     minWidth: "100%",
     minHeight: "100vh",
-    display: "flex",
+    display: "grid",
+    gridTemplateColumns: "1fr 1fr",
     flexDirection: "column",
-    justifyContent: "center",
+    alignItems: "center",
   },
   card: {
-    minWidth: "60vw",
-    maxWidth: "100vw",
-    minHeight: "50vh",
+    margin: "0px 30px",
+    minWidth: "40vw",
+    minHeight: "60vh",
     display: "flex",
     alignItems: "center",
+    alignSelf: "center",
     backgroundColor: theme.palette.primary.dark,
-    boxShadow: "10px 10px 5px 0px rgba(0,0,0,0.25)",
+    boxShadow: "10px 10px 5px 0px rgba(77,191,20,0.29)",
+    gridColumn: "1",
   },
   resultsGrid: {
     display: "flex",
     flexWrap: "wrap",
+  },
+  description: {
+    gridColumn: "2",
+    minHeight: "90vh",
+    maxWidth: "100%",
+    padding: "0px 30px 0px 0px"
   },
 });
 
@@ -53,10 +63,19 @@ class App extends Component {
           spacing={0}
           alignItems="center"
           justify="center"
+          style={{
+            backgroundImage: `url(${process.env.PUBLIC_URL + "/spectrogram.png"})`,
+          }}
         >
           <Card className={classes.card} variant="outlined">
             <UploadFileForm handler={this.handler}> </UploadFileForm>{" "}
           </Card>
+          <Grid
+            container
+            className={classes.description}
+          >
+            <Typography>ifjahkdL:DSodpiouhlkfjahleuhsnk</Typography>
+          </Grid>
         </Grid>
       );
     }

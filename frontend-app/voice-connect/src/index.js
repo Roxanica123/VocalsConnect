@@ -12,13 +12,13 @@ const theme = createMuiTheme({
   palette: {
     primary: {
       main: "#136f63",
-      dark: "#04151F",
-      baby: "#f2ccc3",
-      mint: "#9cfc97",
-      pink: "#e78f8e"
+      dark: "#22145a",
+      baby: "#28af36",
+      mint: "#143d39",
+      pink: "#149a7d"
     },
     secondary: {
-      main: "#e78f8e",
+      main: "#4dbf14",
     },
   },
 });
