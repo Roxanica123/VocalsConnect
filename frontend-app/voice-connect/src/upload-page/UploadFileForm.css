@@ -1,0 +1,6 @@
+.grid {
+  flex-direction: column !important;
+  justify-self: center !important;
+  justify-content: space-between !important;
+  align-content: center !important;
+}
