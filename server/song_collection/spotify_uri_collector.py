@@ -24,5 +24,13 @@ class SpotifyURICollector:
             uris.append(self.requests_get(url + track_id).json()["uri"])
         return uris
 
+    def download_songs(self, path, urls, filenames):
+        for i in range(len(urls)):
+            response = self.requests_get(urls[i])
+            file = '{}/{}.mp3'.format(path, filenames[i])
+            print(file)
+            with open(file, 'wb') as f:
+                f.write(response.content)
+
     def requests_get(self, url):
         return requests.get(url, headers=self.get_headers())

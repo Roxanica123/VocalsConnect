@@ -16,14 +16,14 @@ from song_collection.spotify_uri_collector import SpotifyURICollector
 
 app = Flask(__name__)
 UPLOADS_PATH = './temporary_uploads/'
-prediction_system = PredictionSystem(input_shape=(646, 128, 1), output_size=25,
+prediction_system = PredictionSystem(input_shape=(646, 128, 1), output_size=24,
                                      load_path_weights="./predictions_system/model/model_weights/model",
                                      out_folder=UPLOADS_PATH + "split",
                                      genres_mapping=genres,
-                                     predictions_path="./predictions_system/model/predictions",
+                                     predictions_path="./predictions_system/model/predictions_without_kids",
                                      feature_function=FeatureFunction(get_mel_spec, {"add_dimension": True}, "mel",
                                                                       requires_to_list=False),
-                                     seconds_per_segment=15, additional_segments_seconds_delay=[5, 10])
+                                     seconds_per_segment=15, additional_segments_seconds_delay=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14])
 collection_system = SpotifyURICollector()
 
 

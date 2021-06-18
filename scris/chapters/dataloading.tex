@@ -1,0 +1,63 @@
+\chapter{Încărcarea datelor}
+Având în vedere formatele diferite în care informațiile extrase din fișierele audio pot fi salvate pe disc, 
+același nivel de flexibilitate este necesar și la încărcarea acestor date în memorie. Nevoia de a
+implementa diferite moduri de încărcare pentru tipuri diferite de formate ale datelor a fost un rezultat al capabilităților 
+mașinilor pe care rețeaua a fost antrenată. În funcție de aceste capabilități, dar și în funcție de dimensiunea informațiilor 
+extrase, datele puteau sau nu să fie încărcate în totalitate în memoria RAM. Această problemă a fost rezolvată prin experimentarea 
+cu diferite tipuri de generatoare care încarcă datele de pe disc în timpul antrenării rețelei, scopul final fiind găsirea unei metode care 
+minimizează timpul de antrenare.
+
+O schemă generală a încărcării datelor în memorie și pregătirea inputurilor de antrenare, 
+validare și test ale rețelei este prezentată în figura \ref{fig:f13}
+
+\begin{figure}[h]
+    \caption{Procesul de încărcare al datelor în memorie}
+    \includegraphics[width=0.98\textwidth]{data load.png}
+    \centering
+    \label{fig:f13}
+\end{figure} 
+
+După cum a fost menționat, au existat două abordări, în funcție de dimensiunea datelor și memoria RAM disponibilă. 
+În continuare sunt descrise particularitățile acestor abordări.
+
+\section{Încărcarea întreg setului de date în memorie}
+În acest caz, pipeline-ul primește ca input o instanță a unei clase derivate din clasa de bază Features Loader și, opțional, 
+un state random ce va fi utilizat la amestecarea datelor.
+
+Clasa Features Loader se ocupă de încărcarea informațiilor din fișiere și extragerea genurilor muzicale. 
+În funcție de clasa concretă specificată, informațiile sunt încărcate din fișiere JSON, deserializate ca Tensori din fișiere binare, 
+sau citite ca JSON linie cu linie dintr-un fișier, iar genurile sunt extrase din numele fișierelor, respectiv din obiectul JSON citit.
+La instanțiere se specifică calea directorului sau a fișierului în care se află datele și un subset al genurilor din setul de date. 
+Opțiunea de a specifica un subset de genuri este utilizată în procesul ulterior de selecție a genurilor muzicale dezvoltat în secțiunea 6.1.6. 
+În urma apelării funcției de încărcare se obțin trei liste ce corespund informațiilor extrase din fișierele audio prezente în setul de date, 
+genurilor și id-urilor corespunzătoare acestor informații.
+
+Fiecărui gen distinct încărcat îi este atribuit un număr întreg iar fiecare gen din listă este înlocuit cu numărul ce îi corespunde. 
+În cazul informațiilor extrase din fișierele audio, dacă mai multe tipuri de informații sunt prezente, acestea vor fi concatenate. 
+
+Setul de date obținut va fi amestecat și împărțit în trei seturi de antrenare, test și validare conform unor procente ce pot fi
+specificate. Seturile de date rezultate pot fi 
+liste sau Tensorflow Datasets \footnote{\href{https://www.tensorflow.org/api_docs/python/tf/data/Dataset}{tensorflow.data.Dataset}}.
+
+Cu toate că utilizarea Tensorflow Datasets în favoarea listelor rezultă într-o antrenare mai rapidă a rețelei, în funcție de dimensiunea
+datelor, nu este posibilă alocarea memoriei pentru crearea obiectelor tensorflow.data.Dataset. În aceste cazuri, au fost folosite listele
+ca input pentru rețea sau generatorii.
+
+\section{Generatori}
+O soluție a problemei de memorie este utilizarea obiectelor Tensorflow Datasets construite peste generatori. Astfel, setul de date nu 
+mai este încărcat în totalitate în memorie. Cand se folosește această abordare pipeline-ul primește un obiect al clasei File Names 
+Features Loader, derivată din clasa Features Loader  care încarcă doar numele tuturor fișierelor din setul de date și genurile 
+corespunzătoare. Procesul de amestecare, înlocuire a genurilor cu numere întregi și separare în date de antrenare, test și validare 
+este același. Diferența constă în faptul că, după separarea datelor, sunt instanțiate trei generatoare ce se vor ocupa cu citirea
+informațiilor din fișier. Sunt create trei obiecte Tensorflow Datasets pe baza generatoarelor, utilizând functia $from\_generator$
+\footnote{\href{https://www.tensorflow.org/api_docs/python/tf/data/Dataset\#from\_generator}{tensorflow.data.Dataset.from\_generator}}.
+
+Tensorflow datasets se ocupă automat de formarea batch-urilor și preîncărcarea datelor, fiind mai rapidă decât utilizarea generatorilor
+creați ca input direct al rețelei. Datorită faptului că utilizarea Tensorflow Datasets îmbunătățește timpul de antrenare al rețelei în comparație
+cu listele simple, în cazurile în care dimensiunea memoriei RAM permitea acest lucru, s-au utilizat generatori care încărcau toate datele în
+memorie și le returnau pe rând utilizând Tensorflow Datasets. În acest mod, a fost rezolvată problema spațiului, mentionată anterior, 
+atunci când se alocă
+obiecte Tensorflow Datasets direct pentru listele încărcate în memorie.
+
+În continuare se pot observa rezultatele experimentelor atunci când s-au utilizat modurile descrise de încărcare a datelor.
+\section{Experimente}

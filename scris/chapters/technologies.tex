@@ -1,0 +1,35 @@
+\chapter{Tehnologii folosite}
+\section{Spotify API}
+API-ul oferit de Spotify a fost utilizat atât pentru construirea setului de date, cât și pentru a putea include 
+segmentele similare cu inputul utilizatorului embedded în aplicația Web. Motivul principal pentru care a fost ales
+ acest API este functionalitatea de recomandare care permite ca, printr-un request în care este specificat un
+ anumit gen muzical, să se obțină o listă de albume și, ulterior, segmente în format audio care se 
+încadrează în acel gen. De asemenea, considerând diversitatea genurilor muzicale oferite, 
+acest API rezolvă ambele probleme ce au intervenit în obținerea unui set de date.
+\section{Librosa}
+Librosa este un pachet care pune la dispoziție funcționalități de analiză și prelucrarea a fișierelor audio. 
+A fost folosit în această lucrare pentru prelucrarea datelor, extragerea reprezentărilor necesare rețelei neuronale, 
+dar și pentru extragerea de informații în vederea curățării setului de date.
+\section{Spleeter}
+Spleeter\footnote{https://github.com/deezer/spleeter} este o bibliotecă construită cu Tensorflow care folosește modele pre antrenate pentru separarea surselor audio. 
+În aceasta lucrare, a fost utilizată pentru a izola elementele vocale de instrumental. O bibliotecă alternativă a fost 
+Open-Unmix\footnote{https://github.com/sigsep/open-unmix-pytorch}, dar Spleeter a fost aleasă deoarece are performanțe
+ mai bune pe partea de separare vocală\cite{spleeter}.
+\section{Tensorflow}
+Principalele funcționalități oferite de Tensorflow folosite în această lucrare sunt Keras, necesară pentru construirea 
+și antrenarea rețelei neuronale, tf.data API, utilizată pentru crearea unui input pipeline pentru rețeaua construită și 
+Tensorboard, necesar pentru vizualizarea unor metrici ale procesului de antrenare.
+\section{Sklearn}
+Amestecarea datelor, generarea matricelor de confuzie și calcularea celor mai apropiați vectori de predicție se realizează
+ utilizând funcționalitățile bibliotecii Sklearn. 
+\section{Flask}
+Pentru implementarea serverului web responsabil cu primirea fișierelor audio, procesarea lor și generarea de predicții a fost ales framework-ul Flask, în special datorită 
+arhitecturii mai simple, în comparație cu alte soluții existente, care se pliază pe nevoile curente ale aplicației.
+\section{React}
+Pentru implementarea aplicației frontend, a fost utilizat React deoarece facilitează dezvoltarea mai rapidă a aplicației prin utilizarea componentelor 
+predefinite și, în comparație cu alternativa Angular, are avantajul simplității.
+\section{MongoDB}
+Am utilizat un cluster de MongoDB pentru a salva informații adiționale despre melodiile din setul de date precum numele melodiei, albumul 
+din care face parte și url-ul de la care poate fi descărcată. Principalul motiv pentru care am optat pentru un serviciu de baze de date în
+Cloud este ușurința prin care datele pot fi accesate de pe mai multe dispozitive. Atfel, melodiile au putut fi descărcate în paralel, iar
+existența datelor duplicate a fost evitată prin verificarea existenței în baza de date care ține evidența tuturor descărcărilor.

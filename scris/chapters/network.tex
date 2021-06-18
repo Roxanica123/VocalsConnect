@@ -1,0 +1,207 @@
+\chapter{Arhitectura rețelei}
+\section{Experimente}
+În această secțiune sunt descrise diferite tipuri de rețele utilizate și arhitecturile utilizate, comparând rezultatele obținute și motivând
+alegerea arhitecturii finale.
+\subsection{CNN}
+Rețelele  neuronale convoluționale (CNNs) sunt rețele neuronale utilizate, de obicei, pentru procesarea imaginilor. 
+Prima aplicație ce are la bază rețelele convoluționale moderne \cite{cnns-first} a demonstrat faptul că o astfel de rețea 
+poate recunoaște cifrele scrise de mână din setul de date MNIST cu o rată de eroare de doar 0.7\% (Boosted LeNet-4), un rezultat
+semnificativ mai bun decât alte rețele ce nu aveau la bază straturi convoluționale și, de asemenea, cu un număr mai mic de parametrii
+ce pot fi antrenați.
+
+Ideea de bază a acestui tip de rețea este emularea modului în care oamenii procesează imaginile, prin 
+identificarea unor structuri simple care agregate, definesc structuri mai complexe iar în final obiecte. Acest proces se bazează pe 
+două elemente fundamentale, convoluția si agregarea (pooling).
+
+\subsubsection{Convoluția}
+Un strat convoluțional are la bază unul sau mai multe nuclee (kernels). Fiecare nucleu este o matrice, bidimensională sau
+tridimensională, în funcție de numărul de canale al imaginii. Se calculează un produs scalar dintre nucleu și o submatricea 
+imaginii de aceeași dimensiune cu cea a nucleului, rezultatul produsului fiind salvat in celula corespunzătoarea celulei 
+care se află în centrul submatricii selectate. Procesul este ilustrat în figura \ref{fig:f15} 
+\footnote{\href{https://github.com/musikalkemist/DeepLearningForAudioWithPython/blob/master/15\-\%20How\%20does\%20a\%20convolutional\%20neural\%20network\%20work/slides/How\%20does\%20a\%20convolutional\%20\%20neural\%20network\%20work.pdf}{How does a convolutional neural network work}}. 
+Pentru a calcula produsul 
+scalar și pentru elementele de pe marginea matricii, în cazul în care nu se dorește reducerea dimensiunii, matricea va fi bordată.
+
+\begin{figure}[h]
+    \caption{Produsul scalar dintre submatrice și nuclee}
+    \includegraphics[width=\textwidth]{kernels.png}
+    \centering
+    \label{fig:f15}
+\end{figure}
+
+Nucleul se deplasează cu un anumit număr de poziții (strides) pe verticală și pe orizontală. Acest factor poate modifica, din nou, 
+dimensiunea rezultatelor. Fiecare nucleu din stratul convoluțional va genera ca rezultat o matrice bidimensională. 
+Prin antrenare, nucleele acținează ca filtre ce vor fi modificate pentru a identifica structurile de baza ale imaginii, 
+linii și curbe în primele 
+straturi convoluționale și structuri mai complexe la adâncimi mai mari.
+
+După un strat convolutional, se aplică o operație de agregare (pooling).
+
+\subsubsection{Pooling}
+
+Pooling-ul este o operație ce are ca scop reducerea dimensiunii reprezentării. Similar cu procesul de convoluție, 
+se stabilește o dimensiune de pooling și un stride. Diferența este faptul că, operația nu depinde de parametri ce pot 
+fi antrenați, este doar un calcul asupra elementelor dintr-o submatrice cu aceeași dimensiune ca dimensiune de pooling 
+stabilită. Această operație poate fi selectarea elementului maxim din submatrice (Max Pooling), calcularea mediei, 
+calcularea mediei ponderate în funcție de distanța de la centrul matricii, etc.
+
+Procesul de Max Pooling pentru o 
+dimensiune de (2, 2) și un stride de 2 este ilustrat în figura \ref{fig:f16}
+
+\begin{figure}[h]
+    \caption{Max Pooling pentru dimensiunea (2, 2) și un stride de 2}
+    \includegraphics[width=0.5\textwidth]{pooling.png}
+    \centering
+    \label{fig:f16}
+\end{figure}
+
+\subsubsection{Batch Normalization}
+Batch Normalization este un proces prin care input-urile straturilor rețelei sunt normalizate, rezultatul fiind o antrenare mai 
+stabilă și rapidă a rețelei. 
+
+Normalizarea se obține calculând media batch-ului,
+$\mu_{B} = \frac{1}{m}\sum^{m}_{i=1}x_{i}$, și deviația standard, $\sigma^{2}_{B} = \frac{1}{m}\sum^{m}_{i=1}(x_{i} - \mu_{B})^{2}$, 
+unde $m$ este numărul de elemente din batch. Se calculează $\hat x_{i}=\frac{x_{i}-\mu_{B}}{\sqrt{\sigma^{2}_{B}+\epsilon}}$, iar pe baza
+acestor valori se calculează noile valori normalizate, $y_{i}=\gamma\hat x_{i} + \beta$, unde $\gamma$ și $\beta$ sunt paramentrii ce
+pot fi antrenați. \cite{batch-norm}
+
+\subsubsection{Arhitectura CNN implementată}
+
+Având în vedere că spectrogramele Mel și coeficienții MFCC pot fi considerate reprezentări similare cu o 
+imagine cu un singur canal (grayscale), ce mențin aspectele de structură prezente în imagini, rețelele convoluționale 
+sunt populare nu doar în procesarea imaginilor, ci și în procesarea audio.
+Arhitectura rețelei convoluționale implementate are 3 straturi convoluționale cu 32 de nuclee de dimensiunea (3, 3). 
+Fiecare strat convoluțional este urmat de un strat de Max Pooling cu dimensiunile (3, 3), (3, 3), respectiv (2, 2) apoi de 
+un strat de Batch Normalization. Output-urile sunt aplatizate și introduse ca input într-un strat dens conectat cu 64 de neuroni, urmat de 
+stratul de output. 
+
+\subsubsection{Dropout}
+Dropout-ul este un procedeu prin care, în timpul antrenării, un procent din 
+neuronii rețelei dintr-un anumit layer sunt ignorați, alături de conexiunile 
+cu ceilalți neuroni. Acești neuroni sunt
+selectați random la fiecare iterație. Rezultatul este prevenirea fenomenului
+ de overfitting deoarece devine imposibil ca rețeaua să devină dependentă
+de un subset al neuronilor, atunci când aceștia pot deveni inactivi. Astfel,
+este incurajată generalizarea. \cite{overfitting}
+
+Din acest motiv, între straturile dens conectate am utilizat un strat de Dropout de 0.3.
+\subsubsection{ReLU}
+Funcțiile de activare pentru straturile convoluționale și primul strat dens sunt ReLU, $f(x) = max(0, x)$ deoarece
+previne problema de dispariție a gradientului (vanishing gradient) și are o complexitate computațională scăzută.
+\subsubsection{Softmax}
+Ultimul strat este unul dens conectat cu un număr de neuroni egal cu numărul distincte de genuri și activare Softmax.
+Fiecare valoare a output-ului va reprezenta un procent, sugestiv pentru gradul în care
+un anumit gen se regăsește întru-un segment. 
+\subsubsection{Adam}
+Optimizatorul utilizat a fost Adam cu o rată de învățare de 0.005 deoarece s-a demonstrat că are rezultate mai bune în
+practică decât stochastic gradient descent \cite{adam}.
+
+\pagebreak
+\subsection{LSTM}
+\subsubsection{Rețele neuronale recurente}
+Rețelele neuronale recurtente sunt un tip de rețele neuronale în care conexiunile dintre
+noduri formează un graf orientat în care informația circulă în sensul axei temporale, prin
+existența unor stări și inputuri ascunse. \cite{rnn}
+Structura generală a unei rețele recurente este ilustrată în figura \ref{fig:f17} \footnote{\href{https://stanford.edu/~shervine/teaching/cs-230/cheatsheet-recurrent-neural-networks}{Recurrent Neural Networks cheatsheet}}.
+
+\begin{figure}[h]
+    \caption{Arhitectura tradițională unei rețele neuronale recurente}
+    \includegraphics[width=0.8\textwidth]{rnn.png}
+    \centering
+    \label{fig:f17}
+\end{figure}
+
+$a^{<t>}=g_{1}(W_{aa}a^{<t-1>}+W_{ax}x^{<t>}+b_{a})$ și $y^{<t>} = g_{2}(W_{ya}a^{<t>} + b_{y})$, unde $W_{aa},\ W_{ax}$ și
+$W_{ya}$ sunt ponderile pentru conexiuni (weights) iar $b_{a}$ și $b_{y}$ sunt valorile bias. Atât ponderile, cât și valorile
+bias sunt parametrii ce vor fi antrenați.
+
+Rețelele neuronale recurente sunt des utilizate în problemele de procesarea limbajului natural, 
+de speech recognition și chiar de generarea de segmente muzicale, probleme în care ordinea informațiilor
+are o mare importanță, deoarece iau în calcul aspectul
+temporal al datelor.   
+
+O problemă a acestor tip de rețele este dificultatea accesării informațiilor care 
+se află un număr mai mare de pași în trecut deoarece gradientul poate crește sau
+descrește exponențial odată cu numărul mare de straturi care crește odată cu lungimea
+datelor de intrare.
+
+\subsubsection{LSTM}
+Rețelele Long Short Term Memory (LSTM) sunt un subtip de rețele neuronale recurente
+care rezolvă problema învățării dependențelor de lungă durată, prin adăugarea
+unei stări menite să rețină informații pentru perioade mai lungi de timp.
+
+Structura rețelei este similară cu cea a unei rețele recurente tradiționale, diferența
+fiind la nivelul celulei care, acum nu mai conține doar un strat, ci patru straturi care
+interacționează unele cu altele \ref{fig:f18} \footnote{\label{note1}\url{http://colah.github.io/posts/2015-08-Understanding-LSTMs/}}. 
+
+\begin{figure}[h]
+    \caption{Arhitectura LSTM}
+    \includegraphics[width=0.8\textwidth]{lstm.png}
+    \centering
+    \label{fig:f18}
+\end{figure}
+
+Zona roșie a figurii reprezintă elementele ce țin de memoria de lungă durată
+a rețelei. Se observă faptul că asupra acestei stări se execută doar două operații.
+Prima operație este legată de uitarea(eliminarea) informațiilor, iar a doua operație
+este asociată cu adăugarea de noi informații.
+
+Prima operație este o înmulțire bazată pe elemente (produs Hadamard) dintre 
+starea de scurtă durată curentă si output-ul stratului sigmoid, $f_{t} = \sigma(W_{f}\cdot[h_{t-1}, x_{t}] + b_{f})$, unde $[h_{t-1}, x_{t}]$ reprezintă
+concatenarea output-ului stratului anterior cu input-ul stării curente.
+Datorită proprităților funcției de activare sigmoidă, valorile rezulate aparțin intervalului $[0, 1]$, unde $1$
+semnifică faptul că informațiila va fi păstrată, iar pentru $0$ va fi complet eliminată \cite{lstm}.
+
+A doua operație asupra stării ce ține de memoria de lungă durată este ilustrată în figura \ref{fig:f19} \ref{note1}.
+
+\begin{figure}[h]
+    \caption{Actualizarea stării celulei}
+    \includegraphics[width=0.7\textwidth]{lstm1.png}
+    \centering
+    \label{fig:f19}
+\end{figure}
+
+Similar cu prima operație efectuată output-ul stratului sigmoid, $i_{t}$, va
+acționa ca un filtru asupra valorilor $\widetilde{C}_{t}$ ce vor fi adunate la 
+starea $C_{t}$ a celulei. Astfel, se adaugă stării doar informațiile noi ce sunt
+considerate relevante de rețea.
+
+Zona verde din figura \ref{fig:f18} reprezintă output-ul celulei. Acest output va fi 
+construit prin aplicarea unei funcții de activare (tangenta hiperbolica) asupra stării celulei
+și aplicarea unui filtru asupra rezultatului prin înmulțirea cu output-ul stratului sigmoid.
+
+\subsubsection{Arhitectura LSTM implementată}
+Având în vedere contextul temportal al datelor extrase din segmentele audio, 
+a fost construit un model bazat pe LSTM pentru a vedea dacă o procesare ce ține
+cont de contextul temporal reusește să aibă performanțe mai bune decât o
+rețea convoluțională, ținând cont de datele problemei abordate.
+
+Modelul construit este format din doua straturi LSTM cu 64 de unități, urmate de un strat
+dens conectat cu 64 de neuroni, un strat Dropout de 0.3 și un strat dens conectat de
+output cu activare Softmax și un număr de neuroni egal cu numărul de genuri distinte 
+din setul de date.
+
+\subsection{CNN-LSTM}
+
+Combinarea rețelelor convoluționale cu rețele recurente este des utilizată în practică pentru 
+recunoașterea activităților din videoclipuri sau din secvențe de imagini, dar și pentru recunoașterea
+sunetelor sau a genurilor muzicale. 
+
+Rețelele CNN-LSTM combină elementele de procesare a datelor bidimensionale sau
+tridimensionale ale rețelelor convoluționale și aspectele temporale surprinse de
+rețelele LSTM. Straturile convoluționale reduc dimensiunea inputurilor și extrag, în 
+același timp caracteristicile esențiale ale datelor de intrare. Caracteristicile
+extrase de rețeaua CNN sunt apoi introduse într-o rețea LSTM care procesează evoluția
+caracteristicilor, generând o predicție.
+
+\subsubsection{Arhitectura CNN-LSTM implementată}
+Rețeaua CNN are 4 straturi convoluționale cu 64 de nuclee de dimensiunea (3, 3). Fiecare strat
+convoluțional este urmat de un strat de Max Pooling cu dimensiunile (2, 2), (3, 3), (4, 4), (4, 4), 
+și un strat de Batch Normalization. Output-ul rețelei CNN este aplatizat și introdus ca input în
+rețeaua LSTM. 
+
+Rețeaua LSTM are aceeasi arhitectură cu cea implementată în capitolul anterior. În continuare 
+sunt prezentate comparațiile între rețelele implementate.
+\subsection{Comparații}
+\subsection{Selecția genurilor}
+\section{Concluzii}

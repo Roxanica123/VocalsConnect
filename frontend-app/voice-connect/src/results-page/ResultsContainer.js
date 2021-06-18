@@ -60,6 +60,7 @@ class ResultsContainer extends Component {
       .toString()
       .replaceAll(",", ", ")
     const urls = this.props.data.similar_songs_ids;
+    console.log(urls)
     return (
       <Grid container className={classes.grid}>
         <Card container className={classes.text}>

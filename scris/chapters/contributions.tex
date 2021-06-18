@@ -1,0 +1,20 @@
+\chapter*{Contribuții}
+\addcontentsline{toc}{chapter}{Contribuții}
+
+Înainte de construirea rețelei, a fost nevoie de un set de date care să conțină informații prelucrate extrase din segmente
+ audio ce conțin doar elemente vocale, izolate de partea instrumentală sau fișiere audio ce permit izolarea părții
+ instrumentale de cea vocală și apoi prelucrarea părții vocale. Seturi de date deja existente nu au putut fi utilizate
+ deoarece nu conțin fișierele audio, ci doar date prelucrate din care nu se pot izola elementele vocale sau, în cazul
+ celor care conțin fișiere audio, nu au un număr suficient de date sau o diversitate destul de mare a genurilor muzicale.
+ Așadar, a fost necesară construirea unui set de date etichetate format din fișiere audio ce conțin doar elementele vocale
+ din melodiile originale.
+
+A fost construit atat un pipeline de procesare a setului de date și salvarea lui sub forma unor reprezentări ușor de
+ preluat ca input pentru rețeaua neuronală, cat și un pipeline de încărcare în memorie a acestor reprezentări. În ceea
+ ce privește rețeaua neuronală, au fost făcute experimente cu mai multe tipuri de arhitecturi în urma cărora a fost
+ selectată arhitectura cu cele mai bune rezultate, o rețea ce primește ca input spectograme Mel, utilizează o rețea
+ convoluțională pentru a reduce dimensionalitatea spectrogramei și a extrage caracteristicile ei esentiale, aceste
+ caracteristici reprezentând inputul pentru o rețea recurentă care tratează aspectul temporalității spectrogramei.
+
+În final, a fost construită aplicația web care permite vizualizarea predicțiilor pe date noi, în comparație cu segmentele
+ din setul de date cu vectori de predicție similari. 

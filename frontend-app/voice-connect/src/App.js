@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import UploadFileForm from "./upload-page/UploadFileForm";
 import ResultsContainer from "./results-page/ResultsContainer";
+import WaitingPage from "./waiting-page/WaitingPage";
 import Card from "@material-ui/core/Card";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/styles";
+import { BoxLoading } from 'react-loadingg';
 
 const useStyles = (theme) => ({
   root: {
@@ -74,13 +76,13 @@ class App extends Component {
             container
             className={classes.description}
           >
-            <Typography>ifjahkdL:DSodpiouhlkfjahleuhsnk</Typography>
+            <Typography></Typography>
           </Grid>
         </Grid>
       );
     }
     if (this.state.status === "waiting") {
-      return <div>Waiting </div>;
+      return <WaitingPage></WaitingPage>;
     }
     if (this.state.status === "done" && this.state.failed === true) {
       return <div>{this.state.data}</div>;

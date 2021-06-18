@@ -1,0 +1,24 @@
+\chapter{Abordări anterioare}
+\section{Rețele convoluționale pentru clasificarea sunetelor}
+Prin experimentele celor de la Google prezentate în \cite{large} s-a demonstrat că rețelele de mari dimensiuni
+ce au la bază straturi convoluționale precum ResNet-50 și AlexNet au rezultate mai bune în comparație 
+cu rețelele cu straturi dens conectate și au fost utilizate pentru clasificarea a până la 30 de mii de 
+sunete prezente într-un set de date de 70 de milioane de videoclipuri.
+\section{Clasificarea genurilor muzicale}
+Odată cu creșterea popularității platformelor de streaming audio, problema clasificării genurilor muzicale a devenit 
+,de asemenea, mai populară. 
+
+În \cite{mgcrelated} au fost comparate performanțele rețelelor convoluționale ce primesc ca input 
+spectrograme, cu cele ale algoritmilor SVM care primesc ca input caracteristici extrase manual din semnalul audio și apoi s-a incercat 
+combinarea acestora.
+Experimentele s-au bazat pe trei seturi de date diferite, rezultatele obținute pe două dintre acestea pentru combinația dintre CNN și SVM
+depășind rezultatele existente precendent în literatură.
+
+O altă abordare des întâlnită este combinarea rețelelor convoluționale cu rețele neuronale recurente. Experimentele au demonstrat că un CNN 
+combinat cu o rețea recurentă are rezultate mai bune decât rețetele convoluționale simple \cite{resut1} \cite{resut2}.
+
+În ceea ce privește clasificarea genurilor muzicale pe baza elementelor vocale, cele mai multe experimente s-au axat pe clasificarea artiștilor, 
+nefiind cazul de o separare a surselor sonore  pentru a izola vocea. Un experiment care se concentreză exclusiv pe elementele vocale este 
+prezentat în \cite{vocal}. Cu toate acestea, utilizează caracteristici de dimensiuni mici extrase din semnalul audio și un algoritm de 
+clasificare SVM, iar experimentele prezentate anterior demonstrează faptul că rezultate mai bune pot fi obținute cu rețele neuronale și 
+reprezentări de dimensiuni mai mari ale semnalelor audio precum spectograme sau coeficienti MFCC.

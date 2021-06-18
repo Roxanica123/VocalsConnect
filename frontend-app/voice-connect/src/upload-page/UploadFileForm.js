@@ -73,8 +73,8 @@ class UploadFileForm extends Component {
     return (
       <Files
         multiple={false}
-        maxSize="10mb"
-        multipleMaxSize="10mb"
+        maxSize="15mb"
+        multipleMaxSize="15mb"
         accept={["audio/mpeg", "audio/wav"]}
         onSuccess={(files) => {
           this.setState({ selectedFile: files[0] });

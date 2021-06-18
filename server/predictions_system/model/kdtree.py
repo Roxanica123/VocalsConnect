@@ -19,9 +19,11 @@ class KDTree:
         flat_indexes_lists = [item for sublist in indexes_lists for item in sublist]
         zipped = zip(flat_indexes_lists, flat_distances)
         zipped = sorted(zipped, key=lambda elem: elem[1])
-        ids_lists = SortedSet()
+        ids_lists = []
         for element in zipped:
-            ids_lists.add(self.filenames[element[0]].split("_")[1])
+            current_id = self.filenames[element[0]].split("_")[1]
+            if current_id not in ids_lists:
+                ids_lists.append(current_id)
             if len(ids_lists) == self.number_of_neighbours:
                 break
         return list(ids_lists)
