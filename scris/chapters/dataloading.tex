@@ -60,4 +60,24 @@ atunci când se alocă
 obiecte Tensorflow Datasets direct pentru listele încărcate în memorie.
 
 În continuare se pot observa rezultatele experimentelor atunci când s-au utilizat modurile descrise de încărcare a datelor.
+\pagebreak
 \section{Experimente}
+Statisticile legate de timpul de antrenare al rețelei au fost obținute utilizând Tensorboard. Comparațiile au fost facute pentru Tensorflow datasets 
+peste generatoare cu date sub forma de Tensors care încarcă datele progresiv (GS) 
+sau care încarcă inițial toate datele în memorie (GP) și liste cu cu datele în 
+format NumPy (L). Rezultatele sunt prezentate în tabelul \ref{table:1}
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{||p{1.5cm} | p{2.5cm} | p{2.5cm} |p{2.5cm} |p{2.5cm}||} 
+     \hline
+     Metodă & \raggedright Timp mediu / step & \raggedright Timp de execuție GPU & \raggedright Încărcare date în GPU & Altele \\ [0.5ex] 
+     \hline\hline
+     GS & 56.7 & 19.3 & 30.1 & 6.4\\ 
+     GP & \textbf{23.0} & 17.7 & 0.0 & 5.3\\
+     L & 24.9 & 18.7 & 0.0 & 6.2\\
+     \hline
+    \end{tabular}
+    \caption{Comparație între metodele de încărcare ale datelor}
+    \label{table:1}
+    \end{table}
