@@ -5,32 +5,18 @@ import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/styles";
 import Grid from "@material-ui/core/Grid";
 import { Typography } from "@material-ui/core";
-import { BoxLoading } from 'react-loadingg';
+import { SemipolarLoading } from 'react-loadingg';
+
 
 const useStyles = (theme) => ({
   root: {
-    background: theme.palette.primary.baby,
-    minWidth: "100%",
+    backgroundColor: theme.palette.primary.dark,
     minHeight: "100vh",
-    display: "grid",
-    gridTemplateColumns: "1fr 1fr",
+    display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    justifyItems: "center"
   },
-  card: {
-    margin: "0px 30px",
-    minWidth: "40vw",
-    minHeight: "60vh",
-    display: "flex",
-    alignItems: "center",
-    alignSelf: "center",
-    backgroundColor: theme.palette.primary.dark,
-    boxShadow: "10px 10px 5px 0px rgba(77,191,20,0.29)",
-    gridColumn: "1",
-  },
-  loader: {
-      position: "relative"
-  }
 });
 
 class WaitingPage extends Component {
@@ -46,12 +32,9 @@ class WaitingPage extends Component {
             className={classes.root}
             spacing={0}
             alignItems="center"
-            justify="center"
-            style={{
-            backgroundImage: `url(${process.env.PUBLIC_URL + "/spectrogram.png"})`,}}>
-        <Card className={classes.card} variant="outlined">
-            <BoxLoading className={classes.loader}/>
-        </Card>
+            justify="center">
+            <SemipolarLoading color="#4dbf14" size="large" style={{position: "relative", margin:"10px", minHeight:"100px"}}/>
+            <Typography variant="h5" style={{color:"#4dbf14"}}> Hang on, we're working on it 😄</Typography>
       </Grid>
     );
   }

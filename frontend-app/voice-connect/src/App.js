@@ -87,7 +87,7 @@ class App extends Component {
     if (this.state.status === "done" && this.state.failed === true) {
       return <div>{this.state.data}</div>;
     }
-    return <ResultsContainer data={this.state.data}></ResultsContainer>;
+    return <ResultsContainer handler={this.handler} data={this.state.data}></ResultsContainer>;
   }
 }
 

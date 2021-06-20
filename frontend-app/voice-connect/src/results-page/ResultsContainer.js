@@ -5,6 +5,8 @@ import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/styles";
 import Grid from "@material-ui/core/Grid";
 import { Typography } from "@material-ui/core";
+import Button from "@material-ui/core/Button";
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
 const useStyles = (theme) => ({
   root: {
@@ -24,12 +26,12 @@ const useStyles = (theme) => ({
     alignItems: "center",
     justifyContent: "space-around",
     minHeight: "100vh",
-    padding: "0px 10%",
+    padding: "0px 5%",
   },
   resultsGrid: {
     display: "flex",
     flexWrap: "wrap",
-    minHeight: "80vh",
+    minHeight: "75vh",
   },
   text: {
     margin: "20px 0px",
@@ -46,21 +48,21 @@ const useStyles = (theme) => ({
     height: "100%",
     minHeight: "200px",
   },
+  button: {
+    margin: "10px 0px",
+    width: "20%",
+    alignSelf: "center",
+  },
 });
 
 class ResultsContainer extends Component {
-  state = {
-    selectedFile: null,
-    errors: null,
-  };
-
   render() {
     const { classes } = this.props;
     const genres = this.props.data.genre_predictions
       .toString()
       .replaceAll(",", ", ")
     const urls = this.props.data.similar_songs_ids;
-    console.log(urls)
+    const back = ()=>{this.props.handler(null)}
     return (
       <Grid container className={classes.grid}>
         <Card container className={classes.text}>
@@ -97,6 +99,15 @@ class ResultsContainer extends Component {
             </Card>
           ))}
         </Grid>
+        <Button
+          onClick={back}
+          variant="outlined"
+          color="secondary"
+          className={classes.button}
+          startIcon={<ArrowBackIosIcon />}
+        >
+          Back
+        </Button>
       </Grid>
     );
   }
