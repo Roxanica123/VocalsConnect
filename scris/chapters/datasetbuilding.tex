@@ -33,7 +33,7 @@ un proiect de separare a surselor audio lansat de Deezer în 2019 \footnote{http
 direct in pipeline-ul de construire a setului de date. Atfel, imediat după descărcare, melodia este automat împărțită în două fișiere, voce
 și instrumental.
 
-Pentru a realiza acest lucru, Spleeter utilizează o rețea U-Net, un auto-encoder convolutional cu conexiuni de tip skip, modificată
+Pentru a realiza acest lucru, Spleeter utilizează o rețea U-Net \cite{unet}, un auto-encoder convolutional cu conexiuni de tip skip, modificată
 pentru a procesa date de tip 3D (timp, frecvență și canale audio), preantrenată pe un set de date de aproape două sute de ore de
 înregistrări.\cite{spleeter-paper}
 
@@ -44,7 +44,7 @@ Prima problemă constă în pauzele vocale din melodiile descărcate ce în urma
 informații în vederea clasificării, reprezintă elemente de zgomot în antrenarea modelului și, așadar,  este necesară eliminarea lor.
 
 A doua problemă constă în elemente de instrumental care nu au fost bine separate de modelul preantrenat utilizat.
-Problema apare preponderent în cazul genurilor hard-rock, heavy metal, death-metal unde apar solo uri de chitară electrică, iar notele
+Problema apare preponderent în cazul genurilor \textit{hard-rock}, \textit{heavy metal}, \textit{death-metal} unde apar solo uri de chitară electrică, iar notele
 înalte ale chitarei nu sunt distinse de notele înalte ale artistului,
 dar și în cazul melodiilor care conțin instrumente de suflat precum
 saxofonul deoarece are spectrul sonor mai apropiat de cel al vocii umane, după cum se poate observa în figura \ref{fig:f2}
@@ -63,7 +63,7 @@ saxofonul deoarece are spectrul sonor mai apropiat de cel al vocii umane, după 
 \subsection{Eliminarea porțiunilor de liniște}
 Pentru a rezolva prima problemă am folosit funcția \textit{librosa.effects.split}
 \footnote{\href{http://man.hubwiz.com/docset/LibROSA.docset/Contents/Resources/Documents/generated/librosa.effects.split.html}{librosa.effects.split}}.
-Această funcție separa semnalul audio în segmente care nu conțin liniște. După apelarea funcției, segmentele rezultate vor fi concatenate,
+Această funcție separă semnalul audio în segmente care nu conțin liniște. După apelarea funcției, segmentele rezultate vor fi concatenate,
 rezultând un segment audio fără pauze de liniște după cum poate fi observat în figura \ref{fig:f3}
 
 \begin{figure}[h]
@@ -88,7 +88,7 @@ deoarece, în cazul segmentelor care după separare conțin doar liniste, număr
 fi mai mică decât un threshold sub numărul de referință.
 
 O consecință a acestui aspect este faptul că nu se va identifica nicio porțiune de
-liniște. Pentru a rezolva acest caz, se calculează madia pătratică a waveform-ului pentru fiecare frame și se compară această valoare cu un
+liniște. Pentru a rezolva acest caz, se calculează madia pătratică a waveform-ului (RMS) pentru fiecare frame și se compară această valoare cu un
 threshold (0.05). O reprezentare a valorilor mediilor patratice pentru frame uri în comparație cu valorile waveform ului poate fi observată
 în figura \ref{fig:f4}
 
@@ -103,7 +103,7 @@ threshold (0.05). O reprezentare a valorilor mediilor patratice pentru frame uri
 RMS a fost ales în favoarea amplitudinii maxime deoarece evidențiază intensitatea semnalului audio pentru o perioadă mai lungă de timp.
 Valoarea amplitudinii maxime pentru un punct în timp izolat nu este reprezentivă pentru intregul frame și de aceea s-a optat pentru
 media amplitudinor maxime, modul în care acestea evoluează fiind și mai apropiat de modul în care oamenii percep schimbările de intensitate.
-Diferența poate fi observată în figuta \ref{fig:f5}
+Diferența poate fi observată în figura \ref{fig:f5}
 
 \begin{figure}[h]
     \caption{Valorile RMS}
@@ -115,11 +115,11 @@ Diferența poate fi observată în figuta \ref{fig:f5}
 \subsection{Identificarea și eliminarea segmentelor care conțin doar zgomote}
 În cazul elementelor de instrumental care nu au fost bine separate de modelul preantrenat utilizat, chiar dacă nu sunt prezente
 elemente de voce, segmentul nu este identificat ca unul ce conține doar liniște deoarece instrumentalul care nu a fost separat cu
-succes are o intensitate destul de mare. Un segment care se incadrează în această categorie poate fi ascutat \href{https://soundcloud.com/roxana-irimia-480512823/separated-track-that-contains-noise-from-death-angels-mistress-of-pain/s-KWqrjvzkfeT}{aici}.
+succes are o intensitate destul de mare. Un segment care se incadrează în această categorie poate fi ascultat \href{https://soundcloud.com/roxana-irimia-480512823/separated-track-that-contains-noise-from-death-angels-mistress-of-pain/s-KWqrjvzkfeT}{aici}.
 
 Pentru a identifica acest tip de segmente s-a ținut cont de faptul că pentru zgomote, perioada de traversare la nivel de zero 
-(zero crossing
-rate) este mai mare decât cea a vocii umane. Așadar se poate deduce că, în cazul unui segment care conține doar zgomote, dacă valoarea 
+(\textit{Zero Crossing
+Rate}) este mai mare decât cea a vocii umane. Așadar se poate deduce că, în cazul unui segment care conține doar zgomote, dacă valoarea 
 maximă pentru perioada de traversare la nivel de zero este mai mare decât un anumit threshold (0.5), iar valoarea RMS maximă este mai mică decat un
 anumit threshold (0.4), atunci conține doar zgomote și va fi eliminat din setul de date.
 Comparația dintre un segment care conține elemente vocale și un segment care conține doar zgomote poate fi observată în figura \ref{fig:f6}

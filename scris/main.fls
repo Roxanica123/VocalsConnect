@@ -667,16 +667,16 @@ INPUT c:/texlive/2020/texmf-dist/fonts/tfm/public/cm/cmmi8.tfm
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/public/cm/cmmi6.tfm
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/public/cm/cmsy8.tfm
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/public/cm/cmsy6.tfm
-INPUT c:/texlive/2020/texmf-dist/fonts/tfm/adobe/palatino/pplb7t.tfm
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/adobe/palatino/pplr7t.tfm
-INPUT c:/texlive/2020/texmf-dist/fonts/vf/adobe/palatino/pplb7t.vf
-INPUT c:/texlive/2020/texmf-dist/fonts/tfm/adobe/palatino/pplb8r.tfm
+INPUT c:/texlive/2020/texmf-dist/fonts/tfm/adobe/palatino/pplb7t.tfm
 INPUT c:/texlive/2020/texmf-dist/fonts/vf/adobe/palatino/pplb7t.vf
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/adobe/palatino/pplb8r.tfm
 INPUT c:/texlive/2020/texmf-dist/fonts/vf/adobe/palatino/pplr7t.vf
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/adobe/palatino/pplr8r.tfm
 INPUT c:/texlive/2020/texmf-dist/fonts/vf/adobe/palatino/pplr7t.vf
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/adobe/palatino/pplr8r.tfm
+INPUT c:/texlive/2020/texmf-dist/fonts/vf/adobe/palatino/pplb7t.vf
+INPUT c:/texlive/2020/texmf-dist/fonts/tfm/adobe/palatino/pplb8r.tfm
 OUTPUT d:/LICENTA/app/scris/main.toc
 INPUT d:/LICENTA/app/scris/chapters/introduction.tex
 INPUT d:/LICENTA/app/scris/chapters/introduction.tex
@@ -689,16 +689,20 @@ INPUT d:/LICENTA/app/scris/chapters/introduction.tex
 INPUT d:/LICENTA/app/scris/chapters/introduction.tex
 INPUT d:/LICENTA/app/scris/chapters/introduction.tex
 INPUT d:/LICENTA/app/scris/chapters/introduction.tex
+INPUT c:/texlive/2020/texmf-dist/fonts/tfm/adobe/palatino/pplri7t.tfm
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/adobe/palatino/pplr7t.tfm
 INPUT c:/texlive/2020/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 INPUT c:/texlive/2020/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 INPUT c:/texlive/2020/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 INPUT c:/texlive/2020/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/adobe/courier/pcrr7t.tfm
+INPUT c:/texlive/2020/texmf-dist/fonts/vf/adobe/palatino/pplri7t.vf
+INPUT c:/texlive/2020/texmf-dist/fonts/tfm/adobe/palatino/pplri8r.tfm
 INPUT c:/texlive/2020/texmf-dist/fonts/vf/adobe/palatino/pplr7t.vf
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/adobe/palatino/pplr8r.tfm
 INPUT c:/texlive/2020/texmf-dist/fonts/vf/adobe/courier/pcrr7t.vf
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/adobe/courier/pcrr8r.tfm
+INPUT c:/texlive/2020/texmf-dist/fonts/tfm/adobe/palatino/pplb7t.tfm
 INPUT d:/LICENTA/app/scris/chapters/contributions.tex
 INPUT d:/LICENTA/app/scris/chapters/contributions.tex
 INPUT d:/LICENTA/app/scris/chapters/contributions.tex
@@ -710,6 +714,8 @@ INPUT d:/LICENTA/app/scris/chapters/contributions.tex
 INPUT d:/LICENTA/app/scris/chapters/contributions.tex
 INPUT d:/LICENTA/app/scris/chapters/contributions.tex
 INPUT d:/LICENTA/app/scris/chapters/contributions.tex
+INPUT c:/texlive/2020/texmf-dist/fonts/vf/adobe/palatino/pplb7t.vf
+INPUT c:/texlive/2020/texmf-dist/fonts/tfm/adobe/palatino/pplb8r.tfm
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/public/cm/cmr17.tfm
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/public/cm/cmr17.tfm
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/public/cm/cmmi12.tfm
@@ -720,13 +726,10 @@ INPUT d:/LICENTA/app/scris/chapters/relatedwork.tex
 INPUT d:/LICENTA/app/scris/chapters/relatedwork.tex
 INPUT d:/LICENTA/app/scris/chapters/relatedwork.tex
 INPUT d:/LICENTA/app/scris/chapters/relatedwork.tex
-INPUT c:/texlive/2020/texmf-dist/fonts/tfm/adobe/palatino/pplb7t.tfm
 INPUT d:/LICENTA/app/scris/chapters/technologies.tex
 INPUT d:/LICENTA/app/scris/chapters/technologies.tex
 INPUT d:/LICENTA/app/scris/chapters/technologies.tex
 INPUT d:/LICENTA/app/scris/chapters/technologies.tex
-INPUT c:/texlive/2020/texmf-dist/fonts/vf/adobe/palatino/pplb7t.vf
-INPUT c:/texlive/2020/texmf-dist/fonts/tfm/adobe/palatino/pplb8r.tfm
 INPUT d:/LICENTA/app/scris/chapters/datasetbuilding.tex
 INPUT d:/LICENTA/app/scris/chapters/datasetbuilding.tex
 INPUT d:/LICENTA/app/scris/chapters/datasetbuilding.tex
@@ -743,7 +746,6 @@ INPUT d:/LICENTA/app/scris/images//comparatie e4.png
 INPUT d:/LICENTA/app/scris/images//comparatie e4.png
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/adobe/palatino/pplb7t.tfm
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/adobe/palatino/pplb7t.tfm
-INPUT c:/texlive/2020/texmf-dist/fonts/tfm/adobe/palatino/pplri7t.tfm
 INPUT d:/LICENTA/app/scris/images//cleaned_vocals.png
 INPUT d:/LICENTA/app/scris/images//cleaned_vocals.png
 INPUT d:/LICENTA/app/scris/images//cleaned_vocals.png
@@ -753,8 +755,6 @@ INPUT c:/texlive/2020/texmf-dist/fonts/vf/adobe/palatino/pplb7t.vf
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/adobe/palatino/pplb8r.tfm
 INPUT c:/texlive/2020/texmf-dist/fonts/vf/adobe/palatino/pplb7t.vf
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/adobe/palatino/pplb8r.tfm
-INPUT c:/texlive/2020/texmf-dist/fonts/vf/adobe/palatino/pplri7t.vf
-INPUT c:/texlive/2020/texmf-dist/fonts/tfm/adobe/palatino/pplri8r.tfm
 INPUT d:/LICENTA/app/scris/images//rms normal.png
 INPUT d:/LICENTA/app/scris/images//rms normal.png
 INPUT d:/LICENTA/app/scris/images//rms normal.png
@@ -963,9 +963,6 @@ INPUT d:/LICENTA/app/scris/chapters/bibliography.tex
 INPUT d:/LICENTA/app/scris/chapters/bibliography.tex
 INPUT d:/LICENTA/app/scris/chapters/bibliography.tex
 INPUT d:/LICENTA/app/scris/chapters/bibliography.tex
-INPUT c:/texlive/2020/texmf-dist/fonts/tfm/adobe/courier/pcrr7t.tfm
-INPUT c:/texlive/2020/texmf-dist/fonts/vf/adobe/courier/pcrr7t.vf
-INPUT c:/texlive/2020/texmf-dist/fonts/tfm/adobe/courier/pcrr8r.tfm
 INPUT d:/LICENTA/app/scris/main.aux
 INPUT d:/LICENTA/app/scris/main.out
 INPUT d:/LICENTA/app/scris/main.out

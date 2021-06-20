@@ -1,5 +1,5 @@
 \chapter{Prelucrarea fișierelor audio}
-Odată ce toate fișierele audio au fost descărcate, separate în voce și instrumental iar fisierele ce conțin vocea au fost curațate prin
+Odată ce toate fișierele audio au fost descărcate, separate în voce și instrumental iar fisierele ce conțin vocea au fost curățate prin
 procesul descris în capitolul anterior, a fost nevoie de un pipeline de extragere a datelor din fișierele audio. Pipeline-ul are scopul de a 
 face procesul de extragere 
 destul de flexibil încat să permită rularea de experimente pentru segmente de diferite dimensiuni și diferite tipuri de reprezentări ale
@@ -13,18 +13,18 @@ informațiilor audio. Pașii implementați pot fi observați în figura \ref{fig
 \end{figure}
 
 Pipeline-ul primește ca input directorul în care se află fișierele audio, directorul sau fișierul în care vor fi salvate informațiile extrase,
-în funcție de forma sub care dorim să le salvăm, o listă de instanțe ale clasei Feature Function, o instanță a clasei Segment Splitter și,
-opțional, un procent în cazul în care se dorește procesare unui subset al setului de date, opțiune utilă în procesul de testare al
+în funcție de forma sub care dorim să le salvăm, o listă de instanțe ale clasei \textit{Feature Function}, o instanță a clasei \textit{Segment Splitter} și,
+opțional, un procent în cazul în care se dorește procesarea unui subset al setului de date, opțiune utilă în procesul de testare al
 funcționalităților pe diferite mașini.
 
-Clasa Segment Splitter se ocupă de împărțirea semnalului audio în mai multe segmente, de dimensiuni fixe. La crearea unei instanțe pot fi
+Clasa \textit{Segment Splitter} se ocupă de împărțirea semnalului audio în mai multe segmente, de dimensiuni fixe. La crearea unei instanțe pot fi
 specificate numărul de secunde pe care îl vor avea segmentele și o listă de offset-uri de la care să inceapă separarea. De exemplu, după cum
 am exemplificat și în figura \ref{fig:f7} dacă un offset nu este specificat, în urma separării vor rezulta doar segmentele reprezentate cu
 roșu, iar dacă specificăm un offset, vor rezulta și segmentele reprezentate cu verde. Astfel, se asigură faptul că toate datele de input
 pentru rețea au aceeași dimensiune prin prisma faptului că segmentele rezultate au lungimi egale. De asemenea, specificând unul sau mai multe offset-uri,
 dimensiunea setului de date crește considerabil.
 
-Clasa Feature Function modelează un tip de informație pe care vrem să o extragem din segmentele audio. O instanță primește o funcție care,
+Clasa \textit{Feature Function} modelează un tip de informație pe care vrem să o extragem din segmentele audio. O instanță primește o funcție care,
 pentru un segment audio va returna o informație extrasă din acel segment, parametrii adiționali cu care va fi apelată funcția specificată și
 un nume prin care vom identifica informația extrasă. Această abordare asigură elementul de flexibilitate al pipeline-ului. Pentru un tip nou
 de informație este necesară doar definirea unei noi funcții.
@@ -45,9 +45,9 @@ inputuri în antrenarea rețelei.
     \label{fig:f12}
 \end{figure}
 
-O spectrograma este o metodă de vizualizare a evoluției spectrului de frecvențe și intensitatea lor în timp care se obține aplicând o
+O spectrogramă este o metodă de vizualizare a evoluției spectrului de frecvențe și intensitatea lor în timp, care se obține aplicând o
 transformare Fourier de scurtă durată asupra formei de undă. Transformarea Fourier de scurtă durată se obține aplicând transformări Fourier discrete
-pe ferestre de mici dimensiuni ale formei de undă care de obicei se suprapun \cite{spectrograms}. Transformarea fourier discretă face trecerea de
+pe ferestre de mici dimensiuni ale formei de undă care de obicei se suprapun \cite{spectrograms}. Transformarea Fourier discretă face trecerea de
 la domeniul de timp la domeniul de frecvență, descompunând semnalul audio în frecvențele ce îl compun, comparând semnalul cu sinusoidele
 diferitelor frecvențe la diferite faze de undă după cum se poate observa în figura \ref{fig:f8}. \footnote{\href{https://www.youtube.com/watch?v=XQ45IgG6rJ4&ab_channel=ValerioVelardo-TheSoundofAIValerioVelardo-TheSoundofAI}{Demystifying the Fourier Transform}}
 
@@ -112,8 +112,8 @@ această similaritate rezultată reprezentând un coeficient MFCC.
 \end{figure}
 
 În timp ce coeficienții MFCC oferă informații relevante despre formanții și fonemele prezente în semnalul sonor pentru recunoașterea 
-timbrului și speech recognition în general, coeficienții delta și delta delta oferă informații temporale în legatură cu ritmul vorbirii.
-Datorită acestor aspecte, coeficienți MFCC sunt frecvenți utilizați în problemele de speech recognition, principalul avantaj fiind dimensiunea
+timbrului și \textit{speech recognition} în general, coeficienții delta și delta delta oferă informații temporale în legatură cu ritmul vorbirii.
+Datorită acestor aspecte, coeficienți MFCC sunt frecvenți utilizați în problemele de \textit{speech recognition}, principalul avantaj fiind dimensiunea
 redusă în comparație cu spectrogramele Mel. Astfel, în funcție de arhitectura rețelei, a fost preferată utilizarea coeficienților MFCC în favoarea
 spectrogramei Mel tocmai datorită dimensiunii reduse, în special în cazurile în care nu s-au utilizat straturi convoluționale.
 

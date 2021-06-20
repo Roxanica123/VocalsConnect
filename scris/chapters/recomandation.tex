@@ -51,12 +51,12 @@ fi recomandate, deoarece sunt cele mai similare cu segmentele primite ca input.
 Au fost două abordări în prezicerea genurilor muzicale.
 
 Prima abordare a fost calcularea genului muzical pentru fiecare segment, ca fiind genul cu cel mai mare procent din 
-vectorul de predicție. Astfel, în funcție de numărul de segmente care au fost clasificare ca aparținând unui anumit gen, 
-s-au calcular procentele pentru fiecare gen prezis.
+vectorul de predicție. Astfel, în funcție de numărul de segmente care au fost clasificate ca aparținând unui anumit gen, 
+s-au calculat procentele pentru fiecare gen prezis.
 
 A doua abordare a fost adunarea tuturor vectorilor de predicție obținuți. Se selectează cele mai mari 3 valori din vectorul sumă obținut, 
 corespunzătoare genurilor predominante și se calculează procentul lor ca fiind valoare impărțită la suma valorilor din vector. Restul 
-genurilor sunt include în categoria $others$. Chiar dacă
+genurilor sunt incluse în categoria $others$. Chiar dacă
 rezultatele sunt similare cu cele obținute utilizând prima metodă, această 
 metodă are performanțe mai bune atunci cand diferențele dintre procentele din vectorii de predicție obținuți nu sunt mari.
 

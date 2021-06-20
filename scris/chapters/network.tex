@@ -121,7 +121,7 @@ are o mare importanță, deoarece iau în calcul aspectul
 temporal al datelor.   
 
 O problemă a acestor tip de rețele este dificultatea accesării informațiilor care 
-se află un număr mai mare de pași în trecut deoarece gradientul poate crește sau
+se regăsesc la un număr mai mare de pași în trecut deoarece gradientul poate crește sau
 descrește exponențial odată cu numărul mare de straturi care crește odată cu lungimea
 datelor de intrare.
 
@@ -132,7 +132,7 @@ unei stări menite să rețină informații pentru perioade mai lungi de timp.
 
 Structura rețelei este similară cu cea a unei rețele recurente tradiționale, diferența
 fiind la nivelul celulei care, acum nu mai conține doar un strat, ci patru straturi care
-interacționează unele cu altele \ref{fig:f18} \footnote{\label{note1}\url{http://colah.github.io/posts/2015-08-Understanding-LSTMs/}}. 
+interacționează direct între ele \ref{fig:f18} \footnote{\label{note1}\url{http://colah.github.io/posts/2015-08-Understanding-LSTMs/}}. 
 
 \begin{figure}[h]
     \caption{Arhitectura LSTM}
@@ -258,8 +258,9 @@ pe datele de test devenind $0.6140$.
 \end{figure}
 
 \section{Selecția genurilor}
+\label{section:genresselection}
 Spotify oferă $126$ de genuri muzicale ca $seed$ pentru funcționalitatea de recomandări \footnote{https://developer.spotify.com/console/get-available-genre-seeds/}. 
-Dintre aceste genuri, au fost eliminate genurile care conțin în mare parte doar instrumental precum $house$, $techo$ sau $classical$ și genurile muzicale 
+Dintre aceste genuri, au fost eliminate genurile care conțin în mare parte doar instrumental precum \textit{house}, \textit{techno} sau \textit{classical} și genurile muzicale 
 care ar introduce ambiguitate precum \textit{sad}, \textit{holiday}, \textit{rainy-day} sau \textit{workout}. După această filtrare inițială s-a ajuns la un set de date cu 46 de genuri muzicale.
 Rețeaua CNN-LSTM cu Dropout descrisă în subcapitolul anterior a fost antrenată pe acest set de date, iar pentru o selecție ulterioară a genurilor cu scopul de a obține 
 o precizie mai bună a fost construită matricea de confuzie pe setul de date de test \ref{fig:f31}.
@@ -305,7 +306,7 @@ threshold se va alege un subset de date de dimensiunea threshold-ului specificat
 date cu 498 de instanțe din fiecare gen (numărul de instanțe pentru genul blues). Rezultatele pe datele de antrenare și validate 
 pot fi observate în figura \ref{fig:f34}. Pe datele de test, acuratețea prezicerii a fost de $0.5616$. După cum se poate observa, rezultatele obținute 
 anterior, atunci cand este folosit întreg setul de date, sunt mai bune decât atunci cand numărul de instanțe este egal pentru toate genurile. 
-O acuratețea mai bună a prezicerii pentru cazul în care datele nu sunt distribuite egal poate fi observată și în matricele de confuzie \ref{fig:f35}. Un posibil motiv este 
+O acuratețe mai bună a prezicerii pentru cazul în care datele nu sunt distribuite egal poate fi observată și în matricele de confuzie din figura \ref{fig:f35}. Un posibil motiv este 
 numărul semnificativ mai mare de date atunci când este folosit întreg setul de date, astfel este evidențiată nevoia unui set mai mare de date.  
 
 \begin{figure}[h]

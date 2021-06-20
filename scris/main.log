@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.10.8)  19 JUN 2021 23:35
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.10.8)  20 JUN 2021 16:57
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -372,7 +372,7 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <14.4> on input line 6.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 6.
-<images//logoFii.png, id=188, 193.47281pt x 188.95593pt>
+<images//logoFii.png, id=192, 193.47281pt x 188.95593pt>
 File: images//logoFii.png Graphic file (type png)
 <use images//logoFii.png>
 Package pdftex.def Info: images//logoFii.png  used on input line 13.
@@ -390,7 +390,7 @@ l.35 \end{titlepage}
                      [1])
 
 pdfTeX warning: pdflatex.exe (file d:/LICENTA/app/scris/front/anexe.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<front/anexe.pdf, id=201, 614.295pt x 794.97pt>
+<front/anexe.pdf, id=206, 614.295pt x 794.97pt>
 File: front/anexe.pdf Graphic file (type pdf)
 <use front/anexe.pdf>
 Package pdftex.def Info: front/anexe.pdf  used on input line 40.
@@ -422,7 +422,7 @@ pdfTeX warning: pdflatex.exe (file d:/LICENTA/app/scris/front/anexe.pdf): PDF in
 
 
 pdfTeX warning: pdflatex.exe (file d:/LICENTA/app/scris/front/anexe.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<front/anexe.pdf, id=206, page=1, 614.295pt x 794.97pt>
+<front/anexe.pdf, id=211, page=1, 614.295pt x 794.97pt>
 File: front/anexe.pdf Graphic file (type pdf)
 <use front/anexe.pdf, page 1>
 Package pdftex.def Info: front/anexe.pdf , page1 used on input line 40.
@@ -451,7 +451,7 @@ Package pdftex.def Info: front/anexe.pdf , page1 used on input line 40.
  [1 <d:/LICENTA/app/scris/front/anexe.pdf>]
 
 pdfTeX warning: pdflatex.exe (file d:/LICENTA/app/scris/front/anexe.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<front/anexe.pdf, id=236, page=2, 614.295pt x 794.97pt>
+<front/anexe.pdf, id=240, page=2, 614.295pt x 794.97pt>
 File: front/anexe.pdf Graphic file (type pdf)
 <use front/anexe.pdf, page 2>
 Package pdftex.def Info: front/anexe.pdf , page2 used on input line 40.
@@ -472,7 +472,7 @@ Package pdftex.def Info: front/anexe.pdf , page2 used on input line 40.
  [2 <d:/LICENTA/app/scris/front/anexe.pdf>]
 
 pdfTeX warning: pdflatex.exe (file d:/LICENTA/app/scris/front/anexe.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<front/anexe.pdf, id=240, page=3, 614.295pt x 794.97pt>
+<front/anexe.pdf, id=244, page=3, 614.295pt x 794.97pt>
 File: front/anexe.pdf Graphic file (type pdf)
 <use front/anexe.pdf, page 3>
 Package pdftex.def Info: front/anexe.pdf , page3 used on input line 40.
@@ -498,7 +498,7 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 pdfTeX warning (ext4): destination with the same identifier (name{page.}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.26 ...ne {5}Încărcarea datelor}{21}{chapter.5}
+l.26 ...n}{\numberline {4.2}MFCC}{19}{section.4.2}
                                                   % [4
 
 ])
@@ -530,7 +530,7 @@ Capitolul 2.
 
 ]) (d:/LICENTA/app/scris/chapters/datasetbuilding.tex [8] [9]
 Capitolul 3.
-<images//fisiere.png, id=382, 462.528pt x 346.896pt>
+<images//fisiere.png, id=408, 462.528pt x 346.896pt>
 File: images//fisiere.png Graphic file (type png)
 <use images//fisiere.png>
 Package pdftex.def Info: images//fisiere.png  used on input line 10.
@@ -538,44 +538,44 @@ Package pdftex.def Info: images//fisiere.png  used on input line 10.
 [10
 
  <d:/LICENTA/app/scris/images//fisiere.png>] [11]
-<images//comparatie e4.png, id=398, 2211.01031pt x 464.4853pt>
+<images//comparatie e4.png, id=426, 2211.01031pt x 464.4853pt>
 File: images//comparatie e4.png Graphic file (type png)
 <use images//comparatie e4.png>
 Package pdftex.def Info: images//comparatie e4.png  used on input line 56.
 (pdftex.def)             Requested size: 409.71692pt x 86.07018pt.
-<images//cleaned_vocals.png, id=402, 462.528pt x 346.896pt>
+<images//cleaned_vocals.png, id=430, 462.528pt x 346.896pt>
 File: images//cleaned_vocals.png Graphic file (type png)
 <use images//cleaned_vocals.png>
 Package pdftex.def Info: images//cleaned_vocals.png  used on input line 71.
 (pdftex.def)             Requested size: 227.62206pt x 170.71628pt.
  [12 <d:/LICENTA/app/scris/images//comparatie e4.png> <d:/LICENTA/app/scris/images//cleaned_vocals.png>]
-<images//rms normal.png, id=414, 462.528pt x 346.896pt>
+<images//rms normal.png, id=441, 462.528pt x 346.896pt>
 File: images//rms normal.png Graphic file (type png)
 <use images//rms normal.png>
 Package pdftex.def Info: images//rms normal.png  used on input line 98.
 (pdftex.def)             Requested size: 318.66948pt x 239.01443pt.
  [13 <d:/LICENTA/app/scris/images//rms normal.png>]
-<images//rms_vs_amp.png, id=423, 462.528pt x 346.896pt>
+<images//rms_vs_amp.png, id=450, 462.528pt x 346.896pt>
 File: images//rms_vs_amp.png Graphic file (type png)
 <use images//rms_vs_amp.png>
 Package pdftex.def Info: images//rms_vs_amp.png  used on input line 110.
 (pdftex.def)             Requested size: 409.71692pt x 307.302pt.
  [14 <d:/LICENTA/app/scris/images//rms_vs_amp.png>]
-<images//rms_zcr_normal.png, id=432, 462.528pt x 346.896pt>
+<images//rms_zcr_normal.png, id=459, 462.528pt x 346.896pt>
 File: images//rms_zcr_normal.png Graphic file (type png)
 <use images//rms_zcr_normal.png>
 Package pdftex.def Info: images//rms_zcr_normal.png  used on input line 129.
 (pdftex.def)             Requested size: 204.85846pt x 153.6457pt.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <10.95> on input line 129.
-<images//rms_zcr.png, id=433, 462.528pt x 346.896pt>
+<images//rms_zcr.png, id=460, 462.528pt x 346.896pt>
 File: images//rms_zcr.png Graphic file (type png)
 <use images//rms_zcr.png>
 Package pdftex.def Info: images//rms_zcr.png  used on input line 131.
 (pdftex.def)             Requested size: 204.85846pt x 153.6457pt.
 ) (d:/LICENTA/app/scris/chapters/featureextraction.tex [15 <d:/LICENTA/app/scris/images//rms_zcr_normal.png> <d:/LICENTA/app/scris/images//rms_zcr.png>]
 Capitolul 4.
-<images//feature_extraction.png, id=442, 1240.635pt x 540.0175pt>
+<images//feature_extraction.png, id=470, 1240.635pt x 540.0175pt>
 File: images//feature_extraction.png Graphic file (type png)
 <use images//feature_extraction.png>
 Package pdftex.def Info: images//feature_extraction.png  used on input line 10.
@@ -583,37 +583,37 @@ Package pdftex.def Info: images//feature_extraction.png  used on input line 10.
 [16
 
  <d:/LICENTA/app/scris/images//feature_extraction.png>]
-<images//melspec.png, id=450, 536.0025pt x 363.60844pt>
+<images//melspec.png, id=478, 536.0025pt x 363.60844pt>
 File: images//melspec.png Graphic file (type png)
 <use images//melspec.png>
 Package pdftex.def Info: images//melspec.png  used on input line 43.
 (pdftex.def)             Requested size: 318.66948pt x 216.17493pt.
  [17 <d:/LICENTA/app/scris/images//melspec.png>]
-<images//ft.png, id=462, 849.92531pt x 284.56313pt>
+<images//ft.png, id=489, 849.92531pt x 284.56313pt>
 File: images//ft.png Graphic file (type png)
 <use images//ft.png>
 Package pdftex.def Info: images//ft.png  used on input line 56.
 (pdftex.def)             Requested size: 295.90588pt x 99.07318pt.
-<images//melbancs.png, id=465, 578.16pt x 216.81pt>
+<images//melbancs.png, id=492, 578.16pt x 216.81pt>
 File: images//melbancs.png Graphic file (type png)
 <use images//melbancs.png>
 Package pdftex.def Info: images//melbancs.png  used on input line 71.
 (pdftex.def)             Requested size: 273.14923pt x 102.43002pt.
  [18 <d:/LICENTA/app/scris/images//ft.png> <d:/LICENTA/app/scris/images//melbancs.png>]
-<images//mfcc.png, id=484, 807.7678pt x 383.18156pt>
+<images//mfcc.png, id=511, 807.7678pt x 383.18156pt>
 File: images//mfcc.png Graphic file (type png)
 <use images//mfcc.png>
 Package pdftex.def Info: images//mfcc.png  used on input line 89.
 (pdftex.def)             Requested size: 409.71692pt x 194.35587pt.
  [19 <d:/LICENTA/app/scris/images//mfcc.png>]
-<images//dct.png, id=498, 465.99094pt x 313.17pt>
+<images//dct.png, id=525, 465.99094pt x 313.17pt>
 File: images//dct.png Graphic file (type png)
 <use images//dct.png>
 Package pdftex.def Info: images//dct.png  used on input line 109.
 (pdftex.def)             Requested size: 409.71692pt x 275.36107pt.
 ) (d:/LICENTA/app/scris/chapters/dataloading.tex [20 <d:/LICENTA/app/scris/images//dct.png>]
 Capitolul 5.
-<images//data load.png, id=507, 1231.60126pt x 586.19pt>
+<images//data load.png, id=534, 1231.60126pt x 586.19pt>
 File: images//data load.png Graphic file (type png)
 <use images//data load.png>
 Package pdftex.def Info: images//data load.png  used on input line 15.
@@ -625,187 +625,152 @@ Capitolul 6.
 [25
 
 ]
-<images//kernels.png, id=545, 755.82375pt x 308.65312pt>
+<images//kernels.png, id=576, 755.82375pt x 308.65312pt>
 File: images//kernels.png Graphic file (type png)
 <use images//kernels.png>
 Package pdftex.def Info: images//kernels.png  used on input line 27.
 (pdftex.def)             Requested size: 455.24411pt x 185.90445pt.
-<images//pooling.png, id=547, 417.05812pt x 249.18094pt>
+<images//pooling.png, id=578, 417.05812pt x 249.18094pt>
 File: images//pooling.png Graphic file (type png)
 <use images//pooling.png>
 Package pdftex.def Info: images//pooling.png  used on input line 53.
 (pdftex.def)             Requested size: 227.62206pt x 136.00052pt.
  [26 <d:/LICENTA/app/scris/images//kernels.png>] [27 <d:/LICENTA/app/scris/images//pooling.png>] [28]
-<images//rnn.png, id=586, 888.31876pt x 301.125pt>
+<images//rnn.png, id=618, 888.31876pt x 301.125pt>
 File: images//rnn.png Graphic file (type png)
 <use images//rnn.png>
 Package pdftex.def Info: images//rnn.png  used on input line 109.
 (pdftex.def)             Requested size: 364.19667pt x 123.45285pt.
-<images//lstm.png, id=590, 1090.0725pt x 549.55313pt>
+<images//lstm.png, id=622, 1090.0725pt x 549.55313pt>
 File: images//lstm.png Graphic file (type png)
 <use images//lstm.png>
 Package pdftex.def Info: images//lstm.png  used on input line 139.
 (pdftex.def)             Requested size: 364.19667pt x 183.6004pt.
  [29 <d:/LICENTA/app/scris/images//rnn.png>]
-<images//lstm1.png, id=605, 871.75688pt x 289.08pt>
+<images//lstm1.png, id=636, 871.75688pt x 289.08pt>
 File: images//lstm1.png Graphic file (type png)
 <use images//lstm1.png>
 Package pdftex.def Info: images//lstm1.png  used on input line 159.
 (pdftex.def)             Requested size: 318.66948pt x 105.6699pt.
  [30 <d:/LICENTA/app/scris/images//lstm.png> <d:/LICENTA/app/scris/images//lstm1.png>] [31]
-<images//cnn_5s.png, id=626, 1121.69063pt x 305.64188pt>
+<images//cnn_5s.png, id=657, 1121.69063pt x 305.64188pt>
 File: images//cnn_5s.png Graphic file (type png)
 <use images//cnn_5s.png>
 Package pdftex.def Info: images//cnn_5s.png  used on input line 214.
 (pdftex.def)             Requested size: 455.24411pt x 124.04544pt.
-<images//lstm_5s.png, id=627, 1122.44344pt x 303.38344pt>
+<images//lstm_5s.png, id=658, 1122.44344pt x 303.38344pt>
 File: images//lstm_5s.png Graphic file (type png)
 <use images//lstm_5s.png>
 Package pdftex.def Info: images//lstm_5s.png  used on input line 221.
 (pdftex.def)             Requested size: 455.24411pt x 123.04552pt.
  [32 <d:/LICENTA/app/scris/images//cnn_5s.png> <d:/LICENTA/app/scris/images//lstm_5s.png>]
-<images//cnnlstm_15s_without dropout.png, id=637, 1118.67938pt x 310.91156pt>
+<images//cnnlstm_15s_without dropout.png, id=668, 1118.67938pt x 310.91156pt>
 File: images//cnnlstm_15s_without dropout.png Graphic file (type png)
 <use images//cnnlstm_15s_without dropout.png>
 Package pdftex.def Info: images//cnnlstm_15s_without dropout.png  used on input line 236.
 (pdftex.def)             Requested size: 409.71692pt x 113.87315pt.
-<images//cnnlstm_15s.png, id=640, 1129.97156pt x 307.1475pt>
+<images//cnnlstm_15s.png, id=671, 1129.97156pt x 307.1475pt>
 File: images//cnnlstm_15s.png Graphic file (type png)
 <use images//cnnlstm_15s.png>
 Package pdftex.def Info: images//cnnlstm_15s.png  used on input line 248.
 (pdftex.def)             Requested size: 409.71692pt x 111.36505pt.
-<images//cnnlstmcomparatie.png, id=641, 1129.97156pt x 307.1475pt>
+<images//cnnlstmcomparatie.png, id=672, 1129.97156pt x 307.1475pt>
 File: images//cnnlstmcomparatie.png Graphic file (type png)
 <use images//cnnlstmcomparatie.png>
 Package pdftex.def Info: images//cnnlstmcomparatie.png  used on input line 255.
 (pdftex.def)             Requested size: 409.71692pt x 111.36505pt.
  [33 <d:/LICENTA/app/scris/images//cnnlstm_15s_without dropout.png> <d:/LICENTA/app/scris/images//cnnlstm_15s.png> <d:/LICENTA/app/scris/images//cnnlstmcomparatie.png (PNG copy)>]
-<images//cnn_lstm_faradropoutlaconv_64lstm_mel_specs_15s_46genuri_mai_multe_date.png, id=653, 762.59906pt x 627.09282pt>
+<images//cnn_lstm_faradropoutlaconv_64lstm_mel_specs_15s_46genuri_mai_multe_date.png, id=684, 762.59906pt x 627.09282pt>
 File: images//cnn_lstm_faradropoutlaconv_64lstm_mel_specs_15s_46genuri_mai_multe_date.png Graphic file (type png)
 <use images//cnn_lstm_faradropoutlaconv_64lstm_mel_specs_15s_46genuri_mai_multe_date.png>
-Package pdftex.def Info: images//cnn_lstm_faradropoutlaconv_64lstm_mel_specs_15s_46genuri_mai_multe_date.png  used on input line 269.
+Package pdftex.def Info: images//cnn_lstm_faradropoutlaconv_64lstm_mel_specs_15s_46genuri_mai_multe_date.png  used on input line 270.
 (pdftex.def)             Requested size: 455.24411pt x 374.34486pt.
  [34 <d:/LICENTA/app/scris/images//cnn_lstm_faradropoutlaconv_64lstm_mel_specs_15s_46genuri_mai_multe_date.png>]
-<images//cnn_lstm_cudropoutlaconv_64lstm_mel_specs_15s_25genuri_mai_multe_date.png, id=663, 770.12718pt x 630.10406pt>
+<images//cnn_lstm_cudropoutlaconv_64lstm_mel_specs_15s_25genuri_mai_multe_date.png, id=694, 770.12718pt x 630.10406pt>
 File: images//cnn_lstm_cudropoutlaconv_64lstm_mel_specs_15s_25genuri_mai_multe_date.png Graphic file (type png)
 <use images//cnn_lstm_cudropoutlaconv_64lstm_mel_specs_15s_25genuri_mai_multe_date.png>
-Package pdftex.def Info: images//cnn_lstm_cudropoutlaconv_64lstm_mel_specs_15s_25genuri_mai_multe_date.png  used on input line 282.
+Package pdftex.def Info: images//cnn_lstm_cudropoutlaconv_64lstm_mel_specs_15s_25genuri_mai_multe_date.png  used on input line 283.
 (pdftex.def)             Requested size: 455.24411pt x 372.46965pt.
  [35 <d:/LICENTA/app/scris/images//cnn_lstm_cudropoutlaconv_64lstm_mel_specs_15s_25genuri_mai_multe_date.png>]
-<images//genres_segments.png, id=672, 481.8pt x 361.35pt>
+<images//genres_segments.png, id=703, 481.8pt x 361.35pt>
 File: images//genres_segments.png Graphic file (type png)
 <use images//genres_segments.png>
-Package pdftex.def Info: images//genres_segments.png  used on input line 297.
+Package pdftex.def Info: images//genres_segments.png  used on input line 298.
 (pdftex.def)             Requested size: 364.19667pt x 273.15668pt.
  [36 <d:/LICENTA/app/scris/images//genres_segments.png>]
-<images//cnnlstm_equal_distribution.png, id=681, 1141.26375pt x 325.215pt>
+<images//cnnlstm_equal_distribution.png, id=712, 1141.26375pt x 325.215pt>
 File: images//cnnlstm_equal_distribution.png Graphic file (type png)
 <use images//cnnlstm_equal_distribution.png>
-Package pdftex.def Info: images//cnnlstm_equal_distribution.png  used on input line 313.
+Package pdftex.def Info: images//cnnlstm_equal_distribution.png  used on input line 314.
 (pdftex.def)             Requested size: 455.24411pt x 129.7264pt.
-<images//CNNLSTM-equal-distributions.png, id=682, 763.35187pt x 636.87938pt>
+<images//CNNLSTM-equal-distributions.png, id=713, 763.35187pt x 636.87938pt>
 File: images//CNNLSTM-equal-distributions.png Graphic file (type png)
 <use images//CNNLSTM-equal-distributions.png>
-Package pdftex.def Info: images//CNNLSTM-equal-distributions.png  used on input line 321.
+Package pdftex.def Info: images//CNNLSTM-equal-distributions.png  used on input line 322.
 (pdftex.def)             Requested size: 204.85846pt x 170.91019pt.
 File: images//cnn_lstm_cudropoutlaconv_64lstm_mel_specs_15s_25genuri_mai_multe_date.png Graphic file (type png)
 <use images//cnn_lstm_cudropoutlaconv_64lstm_mel_specs_15s_25genuri_mai_multe_date.png>
-Package pdftex.def Info: images//cnn_lstm_cudropoutlaconv_64lstm_mel_specs_15s_25genuri_mai_multe_date.png  used on input line 323.
+Package pdftex.def Info: images//cnn_lstm_cudropoutlaconv_64lstm_mel_specs_15s_25genuri_mai_multe_date.png  used on input line 324.
 (pdftex.def)             Requested size: 204.85846pt x 167.61134pt.
 ) (d:/LICENTA/app/scris/chapters/recomandation.tex [37 <d:/LICENTA/app/scris/images//cnnlstm_equal_distribution.png> <d:/LICENTA/app/scris/images//CNNLSTM-equal-distributions.png>]
 Capitolul 7.
 [38
 
 ]
-<images//kdtree.png, id=696, 1129.21875pt x 312.16624pt>
+<images//kdtree.png, id=727, 1129.21875pt x 312.16624pt>
 File: images//kdtree.png Graphic file (type png)
 <use images//kdtree.png>
 Package pdftex.def Info: images//kdtree.png  used on input line 39.
 (pdftex.def)             Requested size: 409.71692pt x 113.26572pt.
  [39 <d:/LICENTA/app/scris/images//kdtree.png>]
-<images//confusion_better.png, id=705, 822.82407pt x 646.66594pt>
+<images//confusion_better.png, id=736, 822.82407pt x 646.66594pt>
 File: images//confusion_better.png Graphic file (type png)
 <use images//confusion_better.png>
 Package pdftex.def Info: images//confusion_better.png  used on input line 69.
 (pdftex.def)             Requested size: 455.24411pt x 357.77896pt.
  [40 <d:/LICENTA/app/scris/images//confusion_better.png>]
-<images//confusion_without_kids_better.png, id=713, 951.555pt x 730.22812pt>
+<images//confusion_without_kids_better.png, id=745, 951.555pt x 730.22812pt>
 File: images//confusion_without_kids_better.png Graphic file (type png)
 <use images//confusion_without_kids_better.png>
 Package pdftex.def Info: images//confusion_without_kids_better.png  used on input line 81.
 (pdftex.def)             Requested size: 409.71692pt x 314.41537pt.
-<images//songs from the same album_without_kids.png, id=715, 1412.27625pt x 651.18282pt>
+<images//songs from the same album_without_kids.png, id=747, 1412.27625pt x 651.18282pt>
 File: images//songs from the same album_without_kids.png Graphic file (type png)
 <use images//songs from the same album_without_kids.png>
 Package pdftex.def Info: images//songs from the same album_without_kids.png  used on input line 92.
 (pdftex.def)             Requested size: 318.66948pt x 146.92712pt.
  [41 <d:/LICENTA/app/scris/images//confusion_without_kids_better.png> <d:/LICENTA/app/scris/images//songs from the same album_without_kids.png>]
-<images//confusion_full_songs_better_without_kids.png, id=726, 846.16125pt x 651.18282pt>
+<images//confusion_full_songs_better_without_kids.png, id=758, 846.16125pt x 651.18282pt>
 File: images//confusion_full_songs_better_without_kids.png Graphic file (type png)
 <use images//confusion_full_songs_better_without_kids.png>
 Package pdftex.def Info: images//confusion_full_songs_better_without_kids.png  used on input line 106.
 (pdftex.def)             Requested size: 409.71692pt x 315.3066pt.
-<images//songs_from_the_same_album_full_songs_without_kids.png, id=727, 1412.27625pt x 640.64343pt>
+<images//songs_from_the_same_album_full_songs_without_kids.png, id=759, 1412.27625pt x 640.64343pt>
 File: images//songs_from_the_same_album_full_songs_without_kids.png Graphic file (type png)
 <use images//songs_from_the_same_album_full_songs_without_kids.png>
 Package pdftex.def Info: images//songs_from_the_same_album_full_songs_without_kids.png  used on input line 113.
 (pdftex.def)             Requested size: 295.90588pt x 134.22627pt.
  [42 <d:/LICENTA/app/scris/images//confusion_full_songs_better_without_kids.png> <d:/LICENTA/app/scris/images//songs_from_the_same_album_full_songs_without_kids.png>]) (d:/LICENTA/app/scris/chapters/conclusions.tex [43]) (d:/LICENTA/app/scris/chapters/bibliography.tex [44
 
-]
-Underfull \hbox (badness 10000) in paragraph at lines 3--6
-\OT1/pcr/m/n/12 publication / 200806218 _ A _ Comparison _ of _ Human _ and _ Automatic _
- []
+] [45
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 8--11
-\OT1/ppl/m/it/12 Feature Se-lec-tion in Auto-ma-tic Mu-sic Genre Cla-s-si-fi-ca-tion []$\OT1/pcr/m/n/12 https : / / www .
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 8--11
-\OT1/pcr/m/n/12 researchgate . net / publication / 221558637 _ Feature _ Selection _
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 33--36
-\OT1/ppl/m/it/12 Vocal-based Mu-si-cal Genre Cla-s-si-fi-ca-tion []$\OT1/pcr/m/n/12 http : / / cs229 . stanford . edu /
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 33--36
-\OT1/pcr/m/n/12 proj2010 / HuhMiduthuri-[]VocalBasedMusicalGenreClassification .
- []
-
-[45
-
-]
-Underfull \hbox (badness 10000) in paragraph at lines 43--46
-\OT1/ppl/m/it/12 Mo-dels []$\OT1/pcr/m/n/12 https : / / archives . ismir . net / ismir2019 / latebreaking /
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 58--60
-[]\OT1/ppl/m/it/12 MFCC fe-a-tu-res []$\OT1/pcr/m/n/12 https : / / link . springer . com / content / pdf / bbm %
- []
-
-) [46] (d:/LICENTA/app/scris/main.aux)
+] [46]) [47] (d:/LICENTA/app/scris/main.aux)
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 19CAE4F40A6ECDEA45CC70735B6AC129;7000.
+(rerunfilecheck)             Checksum: 3D5EA0890164C024CED383FC3A0E8D46;7119.
  ) 
 Here is how much of TeX's memory you used:
- 12881 strings out of 479916
- 195348 string characters out of 5886648
- 509939 words of memory out of 5000000
- 29023 multiletter control sequences out of 15000+600000
- 562072 words of font info for 93 fonts, out of 8000000 for 9000
+ 12909 strings out of 479916
+ 195685 string characters out of 5886648
+ 510383 words of memory out of 5000000
+ 29038 multiletter control sequences out of 15000+600000
+ 561557 words of font info for 91 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 65i,17n,78p,477b,550s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 65i,17n,78p,950b,550s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2020/texmf-dist/fonts/enc/dvips/base/8r.enc}<c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on d:/LICENTA/app/scris/main.pdf (52 pages, 7139269 bytes).
+Output written on d:/LICENTA/app/scris/main.pdf (53 pages, 7141162 bytes).
 PDF statistics:
- 866 PDF objects out of 1000 (max. 8388607)
- 703 compressed objects within 8 object streams
- 175 named destinations out of 1000 (max. 500000)
- 589 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 937 PDF objects out of 1000 (max. 8388607)
+ 773 compressed objects within 8 object streams
+ 189 named destinations out of 1000 (max. 500000)
+ 597 words of extra memory for PDF output out of 10000 (max. 10000000)
 

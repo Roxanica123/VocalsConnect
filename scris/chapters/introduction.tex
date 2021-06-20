@@ -1,20 +1,20 @@
 \chapter*{Introducere} 
 \addcontentsline{toc}{chapter}{Introducere}
 
-În ultimii ani, domeniul procesării semnalelor audio (Audio Signal Processing) se bucură de o popularitate crescută 
-datorită multitudinii de aplicații practice existente precum anularea zgomotului (noise cancelling), 
-procesarea vorbirii (speech processing), clasificarea sunetelor, dar în special aplicații în domeniul muzical 
-(Music Information Retrieval) începând cu clasificarea genurilor muzicale sau a artiștilor pentru crearea de sisteme 
+În ultimii ani, domeniul procesării semnalelor audio (\textit{Audio Signal Processing}) se bucură de o popularitate crescută 
+datorită multitudinii de aplicații practice existente precum anularea zgomotului (\textit{noise cancelling}), 
+procesarea vorbirii (\textit{speech processing}), clasificarea sunetelor, dar în special aplicații în domeniul muzical 
+(\textit{Music Information Retrieval}) începând cu clasificarea genurilor muzicale sau a artiștilor pentru crearea de sisteme 
 de recomandare sau identificarea încălcării drepturilor de autor prin recunoașterea segmentelor muzicale în videoclipuri, 
-pâna la generarea unor segmente muzicale noi pornind de la anumite genuri sau artiști \footnote{\url{https://openai.com/blog/jukebox/}}.
+până la generarea unor segmente muzicale noi pornind de la anumite genuri sau artiști \footnote{\url{https://openai.com/blog/jukebox/}}.
 
 În ceea ce privește problema clasificării genurilor muzicale, progresele sunt semnificative, 
 luând în calcul un anumit grad de 
 subiectivitate legat de apartenența melodiilor la anumite genuri \cite{subjectivity}. 
 Odată cu evoluția tehnologiei, dimensiunea datelor de intrare pentru algoritmii de clasificare nu mai este limitată la 
 reprezentări de dimensiune redusă. Dacă la început experimentele se axau pe identificarea caracteristicilor de mici 
-dimensiuni dar cu o putere discriminatoare mare prezente în segmentele muzicale (zero crossing rate, MFCC mean, 
-spectral flow mean\cite{featureselection}) și aplicarea unor algoritmi precum KMeans, Knn, masini cu vectori suport 
+dimensiuni dar cu o putere discriminatoare mare prezente în segmentele muzicale (\textit{zero crossing rate, MFCC mean, 
+spectral flow mean}\cite{featureselection}) și aplicarea unor algoritmi precum KMeans, Knn, masini cu vectori suport 
 sau rețele neuronale cu un număr redus de straturi, 
 acum se utilizează date de dimensiuni mari, chiar neprelucrate (forme de undă) ca date de intrare pentru rețele neuronale, 
 de asemenea, de dimensiuni mari, care reușesc să extragă cu succes caracteristicile specifice ale fiecărui gen și 
@@ -22,11 +22,11 @@ să încadreze segmentele într-un gen pe baza acestor caracteristici \cite{resu
 
 În ambele abordări descrise, partea instrumentală a segmentului muzical joacă un rol important, 
 în special elementele de percuție care sunt bine sintetizate în reprezentări, 
-fie ele de dimensiuni mici (zero crossing rate) sau de dimensiuni mari (spectograme). 
+fie ele de dimensiuni mici (\textit{zero crossing rate}) sau de dimensiuni mari (spectograme). 
 În acest sens, există multe experimente care încearcă să rezolve problema de clasificare utilizând doar 
 informații legate de partea instrumentală a segmentelor muzicale\cite{instrumental}. 
-În mod surprinzător, puține lucrări s-au concentrat doar pe aspectul vocal în aceasta problemă de clasificare, 
-cele existente utilizând doar reprezentări de dimensiuni mici și masini cu vectori suport pentru clasificare\cite{vocal} sau
+În mod surprinzător, puține lucrări s-au concentrat doar pe aspectul vocal în această problemă de clasificare, 
+cele existente utilizând doar reprezentări de dimensiuni mici și mașini cu vectori suport pentru clasificare\cite{vocal} sau
 pe clasificarea artistilor, nu a genurilor muzicale\cite{artists}.
 
 Această lucrare abordează problema clasificării genurilor muzicale, 
@@ -39,3 +39,12 @@ Aplicarea practică a lucrării este un sistem de recomandare sub forma unei apl
  pe baza unui input vocal,
  încadrează vocea într-o serie de genuri pe baza rezultatelor clasificării segmentelor
  în care a fost împărțit inputul și sugerează melodii similare existente în setul de date.
+
+\section{Motivație}
+Motivația acestei lucrări este descoperirea informațiilor audio încapsulate în vocea unui artist care interpretează o anumită melodie.
+Fiecare gen muzical poate impune un anumit stil care poate fi identificat prin diferențele de ritm, inflexiuni sau modul de accentuare al versurilor. 
+Astfel, analizând vocea unei persoane într-o anumită melodie, putem sa extragem informații esențiale pentru a încadra vocea într-un anumit gen, dar și
+pentru a identifica voci similare. 
+
+Aplicabilitatea acestei idei este faptul că o persoană are posibilitatea să descopere artiști cu o voce similară cu cei pe care ii asculă deja sau 
+poate să descopere alți artiști cu o voce similară cu cea pe care o are, găsind astfel melodii pe care le-ar putea cânta sau inspirație.

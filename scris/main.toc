@@ -1,5 +1,6 @@
 \babel@toc {romanian}{}
 \contentsline {chapter}{Introducere}{2}{chapter*.2}%
+\contentsline {section}{\numberline {0.1}Motivație}{3}{section.0.1}%
 \contentsline {chapter}{Contribuții}{4}{chapter*.3}%
 \contentsline {chapter}{\numberline {1}Abordări anterioare}{5}{chapter.1}%
 \contentsline {section}{\numberline {1.1}Rețele convoluționale pentru clasificarea sunetelor}{5}{section.1.1}%
@@ -12,7 +13,7 @@
 \contentsline {section}{\numberline {2.5}Sklearn}{8}{section.2.5}%
 \contentsline {section}{\numberline {2.6}Flask}{8}{section.2.6}%
 \contentsline {section}{\numberline {2.7}React}{8}{section.2.7}%
-\contentsline {section}{\numberline {2.8}MongoDB}{9}{section.2.8}%
+\contentsline {section}{\numberline {2.8}MongoDB}{8}{section.2.8}%
 \contentsline {chapter}{\numberline {3}Construirea setului de date}{10}{chapter.3}%
 \contentsline {section}{\numberline {3.1}Colectarea fișierelor audio}{11}{section.3.1}%
 \contentsline {section}{\numberline {3.2}Izolarea elementelor vocale}{11}{section.3.2}%
@@ -53,7 +54,7 @@
 \contentsline {section}{\numberline {7.3}Experimente}{40}{section.7.3}%
 \contentsline {chapter}{Concluzii}{44}{chapter*.51}%
 \contentsline {section}{\numberline {7.4}Direcții viitoare}{44}{section.7.4}%
-\contentsline {section}{\numberline {7.5}Setul de date}{44}{section.7.5}%
-\contentsline {section}{\numberline {7.6}Arhitectura rețelei}{44}{section.7.6}%
-\contentsline {section}{\numberline {7.7}Noi funcționalități}{44}{section.7.7}%
+\contentsline {subsection}{\numberline {7.4.1}Setul de date}{44}{subsection.7.4.1}%
+\contentsline {subsection}{\numberline {7.4.2}Arhitectura rețelei}{44}{subsection.7.4.2}%
+\contentsline {subsection}{\numberline {7.4.3}Noi funcționalități}{44}{subsection.7.4.3}%
 \contentsline {chapter}{Bibliografie}{45}{chapter*.52}%
