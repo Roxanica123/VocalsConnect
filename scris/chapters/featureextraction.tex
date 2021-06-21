@@ -6,12 +6,13 @@ destul de flexibil încat să permită rularea de experimente pentru segmente de
 informațiilor audio. Pașii implementați pot fi observați în figura \ref{fig:f7}
 
 \begin{figure}[h]
-    \caption{Procesul de extragere al informațiilor din fisierele audio}
-    \includegraphics[width=0.80\textwidth]{feature_extraction.png}
+      \includegraphics[width=0.80\textwidth]{feature_extraction.png}
     \centering
+    \captionsetup{justification=centering,font=small,labelfont=small}
+    \caption[something]{Procesul de extragere al informațiilor din fisierele audio (Waveform preluat din \textit{Cloudinary Blog} \protect\footnotemark[1])}
     \label{fig:f7}
 \end{figure}
-
+\footnotetext[1]{\url{https://cloudinary.com/blog/how_to_generate_waveform_images_from_audio_files}}
 Pipeline-ul primește ca input directorul în care se află fișierele audio, directorul sau fișierul în care vor fi salvate informațiile extrase,
 în funcție de forma sub care dorim să le salvăm, o listă de instanțe ale clasei \textit{Feature Function}, o instanță a clasei \textit{Segment Splitter} și,
 opțional, un procent în cazul în care se dorește procesarea unui subset al setului de date, opțiune utilă în procesul de testare al
@@ -39,9 +40,10 @@ inputuri în antrenarea rețelei.
 \section{Spectrograme Mel}
 
 \begin{figure}[h]
-    \caption{Spectrograma mel}
-    \includegraphics[width=0.7\textwidth]{melspec.png}
+    \includegraphics[width=0.5\textwidth]{melspec.png}
     \centering
+    \captionsetup{justification=centering,font=small,labelfont=small}
+    \caption{Spectrogramă Mel pentru un segment din setul de date}
     \label{fig:f12}
 \end{figure}
 
@@ -49,14 +51,16 @@ O spectrogramă este o metodă de vizualizare a evoluției spectrului de frecven
 transformare Fourier de scurtă durată asupra formei de undă. Transformarea Fourier de scurtă durată se obține aplicând transformări Fourier discrete
 pe ferestre de mici dimensiuni ale formei de undă care de obicei se suprapun \cite{spectrograms}. Transformarea Fourier discretă face trecerea de
 la domeniul de timp la domeniul de frecvență, descompunând semnalul audio în frecvențele ce îl compun, comparând semnalul cu sinusoidele
-diferitelor frecvențe la diferite faze de undă după cum se poate observa în figura \ref{fig:f8}. \footnote{\href{https://www.youtube.com/watch?v=XQ45IgG6rJ4&ab_channel=ValerioVelardo-TheSoundofAIValerioVelardo-TheSoundofAI}{Demystifying the Fourier Transform}}
+diferitelor frecvențe la diferite faze de undă după cum se poate observa în figura \ref{fig:f8}.
 
 \begin{figure}[h]
-    \caption{Trecerea de la domeniul de timp la domeniul de frecvență}
     \includegraphics[width=0.65\textwidth]{ft.png}
     \centering
+    \captionsetup{justification=centering,font=small,labelfont=small}
+    \caption{Trecerea de la domeniul de timp la domeniul de frecvență (imagine preluată din \textit{Demystifying the Fourier Transform} \protect\footnote[1])}
     \label{fig:f8}
 \end{figure}
+\footnotetext[1]{\url{https://youtu.be/XQ45IgG6rJ4}}
 
 În urma aplicării aplicării unei transformări Fourier de scurtă durată obținem o evoluție în timp a frecvențelor prezente în semnalul audio.
 Atât amplitudinea cât și frecvențele rezultate sunt reprezentate liniar în urma aplicării acestei transformări. Cu toate acestea, modul în care
@@ -64,12 +68,13 @@ oamenii percep aceste valori este logaritmic. De aceea, pentru a apropia aceast�
 amplitudinea este convertită în decibeli, iar frecvența este convertită conform scării Mel $m = 2595 \cdot \log (1+\frac{f}{500})$, unde $f$ este
 frecvența exprimată în Hertz și $m$ este frecvența exprimată în Mel. Se plasează pe intervalul dintre cea
 mai joasă frecvență Mel și cea mai înaltă frecvență Mel un număr de puncte echidistante egal cu numărul de filtre mel dorite (128) care vor fi
-centrul filtrelor triunghiulare Mel \ref{fig:f9} \footnote{http://siggigue.github.io/pyfilterbank/melbank.html}. 
+centrul filtrelor triunghiulare Mel \ref{fig:f9}. 
 
 \begin{figure}[h]
-    \caption{Filtre Mel}
-    \includegraphics[width=0.6\textwidth]{melbancs.png}
+    \includegraphics[width=0.55\textwidth]{melbancs.png}
     \centering
+    \captionsetup{justification=centering,font=small,labelfont=small}
+    \caption{Filtre Mel (\url{http://siggigue.github.io/pyfilterbank/melbank.html})}
     \label{fig:f9}
 \end{figure}
 
@@ -85,9 +90,10 @@ sunetele, și are rezultate mai bune în literatură în problema clasificării 
 \section{MFCC}
 
 \begin{figure}[h]
-    \caption{MFCC}
-    \includegraphics[width=0.9\textwidth]{mfcc.png}
+    \includegraphics[width=\textwidth]{mfcc.png}
     \centering
+    \caption{Coeficienți MFCC pentru un segment din setul de date}
+    \captionsetup{justification=centering,font=small,labelfont=small}
     \label{fig:f11}
 \end{figure}
 
@@ -100,14 +106,14 @@ respectiv coeficienți delta delta\cite{mfccs}.
 Transformarea cosinusoidală discretă este un proces similar cu transformare Fourier discretă, diferența fiind faptul că transformarea cosinusoidală
 discretă returnează valori din mulțimea numerelor reale în timp ce transformarea Fourier discretă poate returna valori complexe. 
 Astfel, se calculează similaritatea
-dintre spectrul Mel logaritmic și mai multe funcții cosinusoidale ce corespund diferitelor frecvențe \ref{fig:f10} 
-\footnote{\href{https://www.youtube.com/watch?v=4_SH2nfbQZ8&ab_channel=ValerioVelardo-TheSoundofAIValerioVelardo-TheSoundofAI}{Mel-Frequency Cepstral Coefficients Explained}}, 
+dintre spectrul Mel logaritmic și mai multe funcții cosinusoidale ce corespund diferitelor frecvențe \ref{fig:f10}, 
 această similaritate rezultată reprezentând un coeficient MFCC.
-
+\pagebreak
 \begin{figure}[h]
-    \caption{Transformarea cosinusoidală discretă}
     \includegraphics[width=0.9\textwidth]{dct.png}
     \centering
+    \captionsetup{justification=centering,font=small,labelfont=small}
+    \caption{Transformarea cosinusoidală discretă (imagine preluată din \url{https://youtu.be/4_SH2nfbQZ8})}
     \label{fig:f10}
 \end{figure}
 

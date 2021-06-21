@@ -6,9 +6,10 @@ distribuția nu a mai rămas egală, acest aspect fiind tratat în subcapitolul 
 Distribuția menționată poate fi observată în figura \ref{fig:f1}.
 
 \begin{figure}[h]
-    \caption{Distribuția fișierelor per genuri muzicale}
     \includegraphics[width=0.9\textwidth]{fisiere.png}
     \centering
+    \captionsetup{justification=centering,font=small,labelfont=small}
+    \caption{Distribuția fișierelor per genuri muzicale}
     \label{fig:f1}
 \end{figure}
 
@@ -47,18 +48,19 @@ A doua problemă constă în elemente de instrumental care nu au fost bine separ
 Problema apare preponderent în cazul genurilor \textit{hard-rock}, \textit{heavy metal}, \textit{death-metal} unde apar solo uri de chitară electrică, iar notele
 înalte ale chitarei nu sunt distinse de notele înalte ale artistului,
 dar și în cazul melodiilor care conțin instrumente de suflat precum
-saxofonul deoarece are spectrul sonor mai apropiat de cel al vocii umane, după cum se poate observa în figura \ref{fig:f2}
+saxofonul deoarece are spectrul sonor mai apropiat de cel al vocii umane, după cum se poate observa în figura \ref{fig:f2}.
 
 În continuare sunt descriși pașii implementați pentru a rezolva aceste probleme.
 
 \begin{figure}[h]
-    \caption{Comparație a spectrogramelor pentru nota E4}
-    \includegraphics[width=0.9\textwidth]{comparatie e4.png}
+    \includegraphics[width=0.85\textwidth]{comparatie e4.png}
     \centering
+    \captionsetup{justification=centering,font=small,labelfont=small}
+    \caption[Caption for LOF]{Comparație a spectrogramelor pentru nota E4 obținute cu \textit{ChromeMusicLab} \protect\footnotemark[1]}
     \label{fig:f2}
 \end{figure}
 
-
+\footnotetext[1]{\url{https://musiclab.chromeexperiments.com/Spectrogram/}}
 
 \subsection{Eliminarea porțiunilor de liniște}
 Pentru a rezolva prima problemă am folosit funcția \textit{librosa.effects.split}
@@ -67,9 +69,10 @@ Această funcție separă semnalul audio în segmente care nu conțin liniște. 
 rezultând un segment audio fără pauze de liniște după cum poate fi observat în figura \ref{fig:f3}
 
 \begin{figure}[h]
-    \caption{Waveform înainte și după curățarea porțiunilor de liniște}
     \includegraphics[width=0.5\textwidth]{cleaned_vocals.png}
     \centering
+    \captionsetup{justification=centering,font=small,labelfont=small}
+    \caption{Waveform înainte și după curățarea porțiunilor de liniște}
     \label{fig:f3}
 \end{figure}
 
@@ -94,9 +97,10 @@ threshold (0.05). O reprezentare a valorilor mediilor patratice pentru frame uri
 
 
 \begin{figure}[h]
-    \caption{Valorile RMS}
     \includegraphics[width=0.7\textwidth]{rms normal.png}
     \centering
+    \captionsetup{justification=centering,font=small,labelfont=small}
+    \caption{Valorile RMS}
     \label{fig:f4}
 \end{figure}
 
@@ -106,9 +110,10 @@ media amplitudinor maxime, modul în care acestea evoluează fiind și mai aprop
 Diferența poate fi observată în figura \ref{fig:f5}
 
 \begin{figure}[h]
-    \caption{Valorile RMS}
     \includegraphics[width=0.9\textwidth]{rms_vs_amp.png}
     \centering
+    \captionsetup{justification=centering,font=small,labelfont=small}
+    \caption{Valorile RMS în comparație cu amplitudinea maximă}
     \label{fig:f5}
 \end{figure}
 
@@ -126,9 +131,10 @@ Comparația dintre un segment care conține elemente vocale și un segment care 
 
 \begin{figure}[h]%
     \centering
-    \subfloat[\centering RMS și ZCR pentru voce]{{\includegraphics[width=0.45\textwidth]{rms_zcr_normal.png} }}%
+    \captionsetup{justification=centering,font=small,labelfont=small}
+    \subfloat[\centering RMS și ZCR pentru voce]{{\includegraphics[width=0.465\textwidth]{rms_zcr_normal.png} }}%
     \qquad
-    \subfloat[\centering RMS și ZCR pentru zgomot]{{\includegraphics[width=0.45\textwidth]{rms_zcr.png} }}%
+    \subfloat[\centering RMS și ZCR pentru zgomot]{{\includegraphics[width=0.465\textwidth]{rms_zcr.png} }}%
     \caption{Comparație între RMS și ZCR pentru voce și zgomot}%
     \label{fig:f6}%
 \end{figure}

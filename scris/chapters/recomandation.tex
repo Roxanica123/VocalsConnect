@@ -35,9 +35,10 @@ a unui vecin existent în setul de date, iar $d_{ij}$ este distanța dintre vect
 de predicție $p_{i}$ și vecinul cu vectorul de predicție la indexul $i_{ij}$.
 
 \begin{figure}[h]
-    \caption{Extragerea vecinilor din KDTree}
     \includegraphics[width=0.9\textwidth]{kdtree.png}
     \centering
+    \captionsetup{justification=centering,font=small,labelfont=small}
+    \caption{Extragerea vecinilor din KDTree}
     \label{fig:f20}
 
 \end{figure}
@@ -65,9 +66,10 @@ metodă are performanțe mai bune atunci cand diferențele dintre procentele din
 Un prim experiment a fost compararea genurilor prezise de sistem cu cele reale pentru segmente existente în setul de date. A fost observată
 o problemă în cazul genului $kids$. Un număr mare de segmente erau fals prezise ca aprținând acestui gen dupa cum se observa în figura \ref{fig:f21}. 
 \begin{figure}[h]
-    \caption{Genurile prezise inițial de sistem}
     \includegraphics[width=\textwidth]{confusion_better.png}
     \centering
+    \captionsetup{justification=centering,font=small,labelfont=small}
+    \caption{Genurile prezise inițial de sistem}
     \label{fig:f21}
 
 \end{figure}
@@ -77,9 +79,10 @@ Ca urmare a acestui rezultat, genul $kids$ a fost eliminat din setul de date, re
 Rezultatele pentru genurile finale selectate sunt ilustrate în figura \ref{fig:f12}
 
 \begin{figure}[h]
-    \caption{Genurile prezise de sistem după eliminarea genului kids}
     \includegraphics[width=0.9\textwidth]{confusion_without_kids_better.png}
     \centering
+    \captionsetup{justification=centering,font=small,labelfont=small}
+    \caption{Genurile prezise de sistem după eliminarea genului kids}
     \label{fig:f22}
 \end{figure}
 
@@ -88,9 +91,10 @@ care fac parte din același album al unui artist pentru
 un segment. Rezultatele pot si observate în figura \ref{fig:f23}. 
 
 \begin{figure}[h]
-    \caption{Numărul de melodii recomandate din acelasi album}
     \includegraphics[width=0.7\textwidth]{songs from the same album_without_kids.png}
     \centering
+    \captionsetup{justification=centering,font=small,labelfont=small}
+    \caption{Numărul de melodii recomandate din acelasi album}
     \label{fig:f23}
 \end{figure}
 
@@ -102,16 +106,18 @@ Segmentele descărcate utilizând Spotify API au doar 30 de secunde. Un subset d
 descărcate în întregime, iar experimentul a fost rulat din nou. Rezultatele pot fi observate în figurile \ref{fig:f24} și \ref{fig:f25}
 
 \begin{figure}[h]
-    \caption{Genurile prezise de sistem pentru melodiile întregi}
-    \includegraphics[width=0.9\textwidth]{confusion_full_songs_better_without_kids.png}
     \centering
+    \includegraphics[width=0.9\textwidth]{confusion_full_songs_better_without_kids.png}
+    \captionsetup{justification=centering,font=small,labelfont=small}
+    \caption{Genurile prezise de sistem pentru melodiile întregi}
     \label{fig:f24}
 \end{figure}
 
 \begin{figure}[h]
-    \caption{Numărul de melodii recomandate din acelasi album pentru melodiile întregi}
-    \includegraphics[width=0.65\textwidth]{songs_from_the_same_album_full_songs_without_kids.png}
     \centering
+    \includegraphics[width=0.65\textwidth]{songs_from_the_same_album_full_songs_without_kids.png}
+    \captionsetup{justification=centering,font=small,labelfont=small}
+    \caption{Numărul de melodii recomandate din acelasi album pentru melodiile întregi}
     \label{fig:f25}
 \end{figure}
 

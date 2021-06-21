@@ -1,5 +1,6 @@
 \chapter{Arhitectura rețelei}
 \section{Experimente}
+\label{section:experiments}
 În această secțiune sunt descrise diferite tipuri de rețele utilizate și arhitecturile utilizate, comparând rezultatele obținute și motivând
 alegerea arhitecturii finale.
 \subsection{CNN}
@@ -17,17 +18,18 @@ două elemente fundamentale, convoluția si agregarea (pooling).
 Un strat convoluțional are la bază unul sau mai multe nuclee (kernels). Fiecare nucleu este o matrice, bidimensională sau
 tridimensională, în funcție de numărul de canale al imaginii. Se calculează un produs scalar dintre nucleu și o submatricea 
 imaginii de aceeași dimensiune cu cea a nucleului, rezultatul produsului fiind salvat in celula corespunzătoarea celulei 
-care se află în centrul submatricii selectate. Procesul este ilustrat în figura \ref{fig:f15} 
-\footnote{\href{https://github.com/musikalkemist/DeepLearningForAudioWithPython/blob/master/15\-\%20How\%20does\%20a\%20convolutional\%20neural\%20network\%20work/slides/How\%20does\%20a\%20convolutional\%20\%20neural\%20network\%20work.pdf}{How does a convolutional neural network work}}. 
+care se află în centrul submatricii selectate. Procesul este ilustrat în figura \ref{fig:f15}. 
 Pentru a calcula produsul 
 scalar și pentru elementele de pe marginea matricii, în cazul în care nu se dorește reducerea dimensiunii, matricea va fi bordată.
 
 \begin{figure}[h]
-    \caption{Produsul scalar dintre submatrice și nuclee}
     \includegraphics[width=\textwidth]{kernels.png}
     \centering
+    \captionsetup{justification=centering,font=small,labelfont=small}
+    \caption{Produsul scalar dintre submatrice și nuclee (imagine preluată preluat din \textit{How does a convolutional neural network work}\protect\footnotemark[1])}
     \label{fig:f15}
 \end{figure}
+\footnotetext[1]{\url{https://youtu.be/t3qWfUYJEYU}}
 
 Nucleul se deplasează cu un anumit număr de poziții (strides) pe verticală și pe orizontală. Acest factor poate modifica, din nou, 
 dimensiunea rezultatelor. Fiecare nucleu din stratul convoluțional va genera ca rezultat o matrice bidimensională. 
@@ -44,16 +46,19 @@ se stabilește o dimensiune de pooling și un stride. Diferența este faptul că
 fi antrenați, este doar un calcul asupra elementelor dintr-o submatrice cu aceeași dimensiune ca dimensiune de pooling 
 stabilită. Această operație poate fi selectarea elementului maxim din submatrice (Max Pooling), calcularea mediei, 
 calcularea mediei ponderate în funcție de distanța de la centrul matricii, etc.
+\pagebreak
 
 Procesul de Max Pooling pentru o 
 dimensiune de (2, 2) și un stride de 2 este ilustrat în figura \ref{fig:f16}
 
 \begin{figure}[h]
-    \caption{Max Pooling pentru dimensiunea (2, 2) și un stride de 2}
     \includegraphics[width=0.5\textwidth]{pooling.png}
     \centering
+    \captionsetup{justification=centering,font=small,labelfont=small}
+    \caption{Max Pooling pentru dimensiunea (2, 2) și un stride de 2 (imagine preluată preluat din \textit{How does a convolutional neural network work}\protect\footnotemark[1])}
     \label{fig:f16}
 \end{figure}
+\footnotetext[1]{\url{https://youtu.be/t3qWfUYJEYU}}
 
 \subsubsection{Batch Normalization}
 Batch Normalization este un proces prin care input-urile straturilor rețelei sunt normalizate, rezultatul fiind o antrenare mai 
@@ -102,12 +107,13 @@ practică decât stochastic gradient descent \cite{adam}.
 Rețelele neuronale recurtente sunt un tip de rețele neuronale în care conexiunile dintre
 noduri formează un graf orientat în care informația circulă în sensul axei temporale, prin
 existența unor stări și inputuri ascunse. \cite{rnn}
-Structura generală a unei rețele recurente este ilustrată în figura \ref{fig:f17} \footnote{\href{https://stanford.edu/~shervine/teaching/cs-230/cheatsheet-recurrent-neural-networks}{Recurrent Neural Networks cheatsheet}}.
+Structura generală a unei rețele recurente este ilustrată în figura \ref{fig:f17}.
 
 \begin{figure}[h]
-    \caption{Arhitectura tradițională unei rețele neuronale recurente}
-    \includegraphics[width=0.8\textwidth]{rnn.png}
+    \includegraphics[width=\textwidth]{rnn.png}
     \centering
+    \captionsetup{justification=centering,font=small,labelfont=small}
+    \caption{Arhitectura tradițională unei rețele neuronale recurente (imagine preluată din \protect\cite{rnn})}
     \label{fig:f17}
 \end{figure}
 
@@ -132,12 +138,13 @@ unei stări menite să rețină informații pentru perioade mai lungi de timp.
 
 Structura rețelei este similară cu cea a unei rețele recurente tradiționale, diferența
 fiind la nivelul celulei care, acum nu mai conține doar un strat, ci patru straturi care
-interacționează direct între ele \ref{fig:f18} \footnote{\label{note1}\url{http://colah.github.io/posts/2015-08-Understanding-LSTMs/}}. 
+interacționează direct între ele \ref{fig:f18}. 
 
 \begin{figure}[h]
-    \caption{Arhitectura LSTM}
     \includegraphics[width=0.8\textwidth]{lstm.png}
     \centering
+    \captionsetup{justification=centering,font=small,labelfont=small}
+    \caption{Arhitectura LSTM (imagine preluată din \protect\cite{lstm})}
     \label{fig:f18}
 \end{figure}
 
@@ -152,12 +159,13 @@ concatenarea output-ului stratului anterior cu input-ul stării curente.
 Datorită proprităților funcției de activare sigmoidă, valorile rezulate aparțin intervalului $[0, 1]$, unde $1$
 semnifică faptul că informațiila va fi păstrată, iar pentru $0$ va fi complet eliminată \cite{lstm}.
 
-A doua operație asupra stării ce ține de memoria de lungă durată este ilustrată în figura \ref{fig:f19} \ref{note1}.
+A doua operație asupra stării ce ține de memoria de lungă durată este ilustrată în figura \ref{fig:f19}.
 
 \begin{figure}[h]
-    \caption{Actualizarea stării celulei}
     \includegraphics[width=0.7\textwidth]{lstm1.png}
     \centering
+    \captionsetup{justification=centering,font=small,labelfont=small}
+    \caption{Actualizarea stării celulei (imagine preluată din \protect\cite{lstm})}
     \label{fig:f19}
 \end{figure}
 
@@ -210,16 +218,18 @@ Rezultatele antrenării pentru datele de antrenare și validare pot si observate
 acuratețea prezicerii pentru CNN și LSTM a fost de $0.3466$, respectiv $0.4102$.
 
 \begin{figure}[h]
-    \caption{Rezultatele antrenării pentru arhitectura CNN}
     \includegraphics[width=\textwidth]{cnn_5s.png}
     \centering
+    \captionsetup{justification=centering,font=small,labelfont=small}
+    \caption{Rezultatele antrenării pentru arhitectura CNN}
     \label{fig:f27}
 \end{figure}
 
 \begin{figure}[h]
-    \caption{Rezultatele antrenării pentru arhitectura LSTM}
     \includegraphics[width=\textwidth]{lstm_5s.png}
     \centering
+    \captionsetup{justification=centering,font=small,labelfont=small}
+    \caption{Rezultatele antrenării pentru arhitectura LSTM}
     \label{fig:f26}
 \end{figure}
 
@@ -227,14 +237,18 @@ Având în vedere doar aceste rețele, spectrogramele mel au o dimensiune prea m
 sutelor încep să pună probleme 
 rețelei LSTM. 
 În continuare, experimentele pentru rețeaua CNN-LSTM au ca date de input spectograme Mel extrase din segmente de 15 secunde. Având în vedere faptul că 
-rețeaua CNN reduce dimensiunea datelor de input pentru rețeaua LSTM, lungimea datelor nu mai este o problema. Rezultatele antrenării pentru 
+rețeaua CNN reduce dimensiunea datelor de input pentru rețeaua LSTM, lungimea datelor nu mai este o problema. 
+\pagebreak
+
+Rezultatele antrenării pentru 
 datele de antrenare si validare pot fi observate 
 în figura \ref{fig:f28}, iar acuratețea pe datele de test a fost de $0.5124$
 
 \begin{figure}[h]
-    \caption{Rezultatele antrenării pentru arhitectura inițială CNN-LSTM}
     \includegraphics[width=0.9\textwidth]{cnnlstm_15s_without dropout.png}
     \centering
+    \captionsetup{justification=centering,font=small,labelfont=small}
+    \caption{Rezultatele antrenării pentru arhitectura inițială CNN-LSTM}
     \label{fig:f28}
 \end{figure}
 
@@ -244,16 +258,18 @@ observa în figurile \ref{fig:f29} și \ref{fig:f30}, acuratețea
 pe datele de test devenind $0.6140$. 
 
 \begin{figure}[h]
-    \caption{Rezultatele antrenării pentru arhitectura CNN-LSTM cu Dropout}
     \includegraphics[width=0.9\textwidth]{cnnlstm_15s.png}
     \centering
+    \captionsetup{justification=centering,font=small,labelfont=small}
+    \caption{Rezultatele antrenării pentru arhitectura CNN-LSTM cu Dropout}
     \label{fig:f29}
 \end{figure}
 
 \begin{figure}[h]
-    \caption{Comparația între acuratețea pe datele de validare între CNN-LSTM cu și fără Dropout după straturile convoluționale}
     \includegraphics[width=0.9\textwidth]{cnnlstmcomparatie.png}
     \centering
+    \captionsetup{justification=centering,font=small,labelfont=small}
+    \caption{Comparația între acuratețea pe datele de validare între CNN-LSTM cu și fără Dropout după straturile convoluționale}
     \label{fig:f30}
 \end{figure}
 
@@ -266,9 +282,10 @@ Rețeaua CNN-LSTM cu Dropout descrisă în subcapitolul anterior a fost antrenat
 o precizie mai bună a fost construită matricea de confuzie pe setul de date de test \ref{fig:f31}.
 
 \begin{figure}[h]
-    \caption{Matricea de confuzie pentru 46 de genuri muzicale}
     \includegraphics[width=\textwidth]{cnn_lstm_faradropoutlaconv_64lstm_mel_specs_15s_46genuri_mai_multe_date.png}
     \centering
+    \captionsetup{justification=centering,font=small,labelfont=small}
+    \caption{Matricea de confuzie pentru 46 de genuri muzicale}
     \label{fig:f31}
 \end{figure}
 
@@ -279,9 +296,10 @@ de confuzie. Printre aceste genuri s-au numărat \textit{folk}, \textit{hardrock
 genul \textit{kids} fiind eliminat ulterior din cauza problemei descrise în capitolul \ref{section:kids}.
 
 \begin{figure}[h]
-    \caption{Matricea de confuzie pentru 25 de genuri muzicale}
     \includegraphics[width=\textwidth]{cnn_lstm_cudropoutlaconv_64lstm_mel_specs_15s_25genuri_mai_multe_date.png}
     \centering
+    \captionsetup{justification=centering,font=small,labelfont=small}
+    \caption{Matricea de confuzie pentru 25 de genuri muzicale}
     \label{fig:f32}
 \end{figure}
 
@@ -294,9 +312,10 @@ fiecare gen nu este definit de numărul de fișiere audio, ci de numărul de seg
 reală a datelor este reprezentată în figura \ref{fig:f33}
 
 \begin{figure}[h]
-    \caption{Distribuția datelor pe genuri muzicale}
     \includegraphics[width=0.8\textwidth]{genres_segments.png}
     \centering
+    \captionsetup{justification=centering,font=small,labelfont=small}
+    \caption{Distribuția datelor pe genuri muzicale}
     \label{fig:f33}
 \end{figure}
 
@@ -310,18 +329,20 @@ O acuratețe mai bună a prezicerii pentru cazul în care datele nu sunt distrib
 numărul semnificativ mai mare de date atunci când este folosit întreg setul de date, astfel este evidențiată nevoia unui set mai mare de date.  
 
 \begin{figure}[h]
-    \caption{Rezultatele antrenării pentru arhitectura CNN-LSTM cu distribuția egală a datelor}
     \includegraphics[width=\textwidth]{cnnlstm_equal_distribution.png}
     \centering
+    \captionsetup{justification=centering,font=small,labelfont=small}
+    \caption{Rezultatele antrenării pentru arhitectura CNN-LSTM cu distribuția egală a datelor}
     \label{fig:f34}
 \end{figure}
 
 
 \begin{figure}[h]%
+    \captionsetup{justification=centering,font=small,labelfont=small}
     \centering
-    \subfloat[\centering Distribuție egală]{{\includegraphics[width=0.45\textwidth]{CNNLSTM-equal-distributions.png} }}%
+    \subfloat[\centering Distribuție egală]{{\includegraphics[width=0.467\textwidth]{CNNLSTM-equal-distributions.png} }}%
     \qquad
-    \subfloat[\centering Setul întreg de date]{{\includegraphics[width=0.45\textwidth]{cnn_lstm_cudropoutlaconv_64lstm_mel_specs_15s_25genuri_mai_multe_date.png} }}%
+    \subfloat[\centering Setul întreg de date]{{\includegraphics[width=0.467\textwidth]{cnn_lstm_cudropoutlaconv_64lstm_mel_specs_15s_25genuri_mai_multe_date.png} }}%
     \caption{Comparație între matricele de confuzie}%
     \label{fig:f35}%
 \end{figure}

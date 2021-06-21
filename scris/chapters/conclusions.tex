@@ -1,15 +1,27 @@
-\chapter*{Concluzii} 
-\addcontentsline{toc}{chapter}{Concluzii}
-\section{Direcții viitoare}
-\subsection{Setul de date}
+\chapter{Concluzii} 
+Având în vedere problema abordată, încadrarea segmentelor muzicale într-un anumit gen, utilizând doar elementele vocale, experimentele din capitolul 
+\ref{section:experiments} dovedesc faptul că, utilizarea unei rețele hibrid compusă dintr-o rețea neuronală convolutională și o rețea recurentă LSTM
+ce primește ca input spectogramele Mel ale semnalelor audio, rivalizează algoritmii de clasificare întalniți în literatură. 
+
+\cite{vocal} propune, pentru rezolvarea aceleiași probleme, un algorimn SVM. Rezultatul obținut pe un set de date în care elementele vocale au fost separate de instrumental a fost o acuratețe de $46.9\%$ pentru 8 genuri distincte. 
+Astfel, utilizarea spectogramelor Mel și a rețelei neuronale menționată, dar si utilizarea setului de date 
+construit, a dus la o acuratețe mai bună, $61.4\%$ pentru $25$ de genuri muzicale. 
+
+
+
+
+
+\chapter{Direcții viitoare}
+\section{Setul de date}
+-de adaugat
 Un prim pas în obținerea unor rezultate mai bune este construirea unui set de date ce conține mai multe date ce conține fișiere audio acapella etichetate manual. 
 Astfel, se reduc zgomotele rezultate în urma separării, se rezolvă problema pierderii 
 elementelor de rimt rezultate în urma eliminării porțiunilor de linște și prezicerea nu se mai bazează pe clasificarea genurilor oferită de Spotify care 
 poate prezenta un factor de instabilitate.
-\subsection{Arhitectura rețelei}
+\section{Arhitectura rețelei}
 Un alt factor care pote fi îmbunătățit este arhitectura rețelei utilizată. În funcție de dimensiunea setului de date, se pot utiliza rețele de dimensiuni mai 
 mare care, aplicate pe datele curente ar converge rapid, ajungând la overfitting.
-\subsection{Noi funcționalități}
+\section{Noi funcționalități}
 Având in vedere ideea de recomandare de melodii cu voci similare celei introduse ca input, sistemul de recomandare poate fi extins pentru a lua în calcul 
 mai multe aspecte decât genul în care se încadrează vocea. Aceste noi funcționalități pot include identificarea genului vocii, identificarea range-ului 
 vocal și chiar procesarea discursului pentru a sugera melodii care au un mesaj similar.
