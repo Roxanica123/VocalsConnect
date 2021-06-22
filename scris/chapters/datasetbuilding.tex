@@ -6,11 +6,11 @@ distribuția nu a mai rămas egală, acest aspect fiind tratat în subcapitolul 
 Distribuția menționată poate fi observată în figura \ref{fig:f1}.
 
 \begin{figure}[h]
-    \includegraphics[width=0.9\textwidth]{fisiere.png}
-    \centering
-    \captionsetup{justification=centering,font=small,labelfont=small}
-    \caption{Distribuția fișierelor per genuri muzicale}
-    \label{fig:f1}
+\includegraphics[width=0.9\textwidth]{fisiere.png}
+\centering
+\captionsetup{justification=centering,font=small,labelfont=small}
+\caption{Distribuția fișierelor per genuri muzicale}
+\label{fig:f1}
 \end{figure}
 
 În continuare sunt prezentate, în mai multe detalii, etapele construirii setului de date.
@@ -31,7 +31,7 @@ audio va fi descărcat și procesat.
 Pentru a izola elementele vocale de partea instrumentală am utilizat Spleeter,
 un proiect de separare a surselor audio lansat de Deezer în 2019 \footnote{https://deezer.io/releasing-spleeter-deezer-r-d-source-separation-engine-2b88985e797e},
 în varianta de API python, pentru a integra ușor acest pas
-direct in pipeline-ul de construire a setului de date. Atfel, imediat după descărcare, melodia este automat împărțită în două fișiere, voce
+direct in pipeline-ul de construire a setului de date. Astfel, imediat după descărcare, melodia este automat împărțită în două fișiere, voce
 și instrumental.
 
 Pentru a realiza acest lucru, Spleeter utilizează o rețea U-Net \cite{unet}, un auto-encoder convolutional cu conexiuni de tip skip, modificată
@@ -42,7 +42,7 @@ pentru a procesa date de tip 3D (timp, frecvență și canale audio), preantrena
 În urma separării audio, au fost necesari pași adiționali de procesare a datelor deoarece au fost identificate două probleme.
 
 Prima problemă constă în pauzele vocale din melodiile descărcate ce în urma separării au devenit segmente de liniște care nu dețin
-informații în vederea clasificării, reprezintă elemente de zgomot în antrenarea modelului și, așadar,  este necesară eliminarea lor.
+informații în vederea clasificării, reprezintă elemente de zgomot în antrenarea modelului și, așadar, este necesară eliminarea lor.
 
 A doua problemă constă în elemente de instrumental care nu au fost bine separate de modelul preantrenat utilizat.
 Problema apare preponderent în cazul genurilor \textit{hard-rock}, \textit{heavy metal}, \textit{death-metal} unde apar solo uri de chitară electrică, iar notele
@@ -53,11 +53,11 @@ saxofonul deoarece are spectrul sonor mai apropiat de cel al vocii umane, după 
 În continuare sunt descriși pașii implementați pentru a rezolva aceste probleme.
 
 \begin{figure}[h]
-    \includegraphics[width=0.85\textwidth]{comparatie e4.png}
-    \centering
-    \captionsetup{justification=centering,font=small,labelfont=small}
-    \caption[Caption for LOF]{Comparație a spectrogramelor pentru nota E4 obținute cu \textit{ChromeMusicLab} \protect\footnotemark[1]}
-    \label{fig:f2}
+\includegraphics[width=0.85\textwidth]{comparatie e4.png}
+\centering
+\captionsetup{justification=centering,font=small,labelfont=small}
+\caption[Caption for LOF]{Comparație a spectrogramelor pentru nota E4 obținute cu \textit{ChromeMusicLab} \protect\footnotemark[1]}
+\label{fig:f2}
 \end{figure}
 
 \footnotetext[1]{\url{https://musiclab.chromeexperiments.com/Spectrogram/}}
@@ -69,72 +69,70 @@ Această funcție separă semnalul audio în segmente care nu conțin liniște. 
 rezultând un segment audio fără pauze de liniște după cum poate fi observat în figura \ref{fig:f3}
 
 \begin{figure}[h]
-    \includegraphics[width=0.5\textwidth]{cleaned_vocals.png}
-    \centering
-    \captionsetup{justification=centering,font=small,labelfont=small}
-    \caption{Waveform înainte și după curățarea porțiunilor de liniște}
-    \label{fig:f3}
+\includegraphics[width=0.5\textwidth]{cleaned_vocals.png}
+\centering
+\captionsetup{justification=centering,font=small,labelfont=small}
+\caption{Waveform înainte și după curățarea porțiunilor de liniște}
+\label{fig:f3}
 \end{figure}
 
-
-Noțiunea de liniște în acest caz  este considerată ca fiind o secvență cu un număr de decibeli mai mic decât un threshold
+Noțiunea de liniște în acest caz este considerată ca fiind o secvență cu un număr de decibeli mai mic decât un threshold
 (threshold-ul utilizat a fost 35 de decibeli) sub numărul de decibeli de referință. Numărul de decibeli de referință este numărul
 maxim de decibeli din semnalul sonor.
 Această procesare a fost integrată în pipeline-ul de construire a setului de date, curățarea segmentelor de liniște fiind realizată imediat
-după separarea segmentului inițial în voce și instrumental. De asemenea, dacă după eliminarea liniștei semnalul audio rezultat nu conține
+după separarea segmentului inițial în voce și instrumental. De asemenea, dacă după eliminarea liniștei semnalul audio rezultat nu conține
 cel puțin numărul de secunde per segment necesar la procesare, melodia nu va fi inclusă în setul de date deoarece nu oferă destule
 informații vocale.
 
 \subsection{Identificarea și eliminarea fișierelor care conțin doar liniște}
 A fost menționat faptul că numărul de decibeli de referință este numărul maxim de decibeli din semnalul sonor. Acest aspect este important
-deoarece, în cazul segmentelor care după separare conțin doar liniste, numărul de decibeli de referință este mic iar nicio valoare nu va
+deoarece, în cazul segmentelor care după separare conțin doar liniște, numărul de decibeli de referință este mic iar nicio valoare nu va
 fi mai mică decât un threshold sub numărul de referință.
 
 O consecință a acestui aspect este faptul că nu se va identifica nicio porțiune de
-liniște. Pentru a rezolva acest caz, se calculează madia pătratică a waveform-ului (RMS) pentru fiecare frame și se compară această valoare cu un
-threshold (0.05). O reprezentare a valorilor mediilor patratice pentru frame uri în comparație cu valorile waveform ului poate fi observată
+liniște. Pentru a rezolva acest caz, se calculează media pătratică a waveform-ului (RMS) pentru fiecare frame și se compară această valoare cu un
+threshold (0.05). O reprezentare a valorilor mediilor pătratice pentru frame uri în comparație cu valorile waveform ului poate fi observată
 în figura \ref{fig:f4}
 
-
 \begin{figure}[h]
-    \includegraphics[width=0.7\textwidth]{rms normal.png}
-    \centering
-    \captionsetup{justification=centering,font=small,labelfont=small}
-    \caption{Valorile RMS}
-    \label{fig:f4}
+\includegraphics[width=0.7\textwidth]{rms normal.png}
+\centering
+\captionsetup{justification=centering,font=small,labelfont=small}
+\caption{Valorile RMS}
+\label{fig:f4}
 \end{figure}
 
 RMS a fost ales în favoarea amplitudinii maxime deoarece evidențiază intensitatea semnalului audio pentru o perioadă mai lungă de timp.
-Valoarea amplitudinii maxime pentru un punct în timp izolat nu este reprezentivă pentru intregul frame și de aceea s-a optat pentru
-media amplitudinor maxime, modul în care acestea evoluează fiind și mai apropiat de modul în care oamenii percep schimbările de intensitate.
+Valoarea amplitudinii maxime pentru un punct în timp izolat nu este reprezentivă pentru întregul frame și de aceea s-a optat pentru
+media amplitudinilor maxime, modul în care acestea evoluează fiind și mai apropiat de modul în care oamenii percep schimbările de intensitate.
 Diferența poate fi observată în figura \ref{fig:f5}
 
 \begin{figure}[h]
-    \includegraphics[width=0.9\textwidth]{rms_vs_amp.png}
-    \centering
-    \captionsetup{justification=centering,font=small,labelfont=small}
-    \caption{Valorile RMS în comparație cu amplitudinea maximă}
-    \label{fig:f5}
+\includegraphics[width=0.9\textwidth]{rms_vs_amp.png}
+\centering
+\captionsetup{justification=centering,font=small,labelfont=small}
+\caption{Valorile RMS în comparație cu amplitudinea maximă}
+\label{fig:f5}
 \end{figure}
 
 \subsection{Identificarea și eliminarea segmentelor care conțin doar zgomote}
 În cazul elementelor de instrumental care nu au fost bine separate de modelul preantrenat utilizat, chiar dacă nu sunt prezente
 elemente de voce, segmentul nu este identificat ca unul ce conține doar liniște deoarece instrumentalul care nu a fost separat cu
-succes are o intensitate destul de mare. Un segment care se incadrează în această categorie poate fi ascultat \href{https://soundcloud.com/roxana-irimia-480512823/separated-track-that-contains-noise-from-death-angels-mistress-of-pain/s-KWqrjvzkfeT}{aici}.
+succes are o intensitate destul de mare. Un segment care se încadrează în această categorie poate fi ascultat \href{https://soundcloud.com/roxana-irimia-480512823/separated-track-that-contains-noise-from-death-angels-mistress-of-pain/s-KWqrjvzkfeT}{aici}.
 
-Pentru a identifica acest tip de segmente s-a ținut cont de faptul că pentru zgomote, perioada de traversare la nivel de zero 
+Pentru a identifica acest tip de segmente s-a ținut cont de faptul că pentru zgomote, perioada de traversare la nivel de zero
 (\textit{Zero Crossing
-Rate}) este mai mare decât cea a vocii umane. Așadar se poate deduce că, în cazul unui segment care conține doar zgomote, dacă valoarea 
-maximă pentru perioada de traversare la nivel de zero este mai mare decât un anumit threshold (0.5), iar valoarea RMS maximă este mai mică decat un
+Rate}) este mai mare decât cea a vocii umane. Așadar se poate deduce că, în cazul unui segment care conține doar zgomote, dacă valoarea
+maximă pentru perioada de traversare la nivel de zero este mai mare decât un anumit threshold (0.5), iar valoarea RMS maximă este mai mică decât un
 anumit threshold (0.4), atunci conține doar zgomote și va fi eliminat din setul de date.
 Comparația dintre un segment care conține elemente vocale și un segment care conține doar zgomote poate fi observată în figura \ref{fig:f6}
 
 \begin{figure}[h]%
-    \centering
-    \captionsetup{justification=centering,font=small,labelfont=small}
-    \subfloat[\centering RMS și ZCR pentru voce]{{\includegraphics[width=0.465\textwidth]{rms_zcr_normal.png} }}%
-    \qquad
-    \subfloat[\centering RMS și ZCR pentru zgomot]{{\includegraphics[width=0.465\textwidth]{rms_zcr.png} }}%
-    \caption{Comparație între RMS și ZCR pentru voce și zgomot}%
-    \label{fig:f6}%
+\centering
+\captionsetup{justification=centering,font=small,labelfont=small}
+\subfloat[\centering RMS și ZCR pentru voce]{{\includegraphics[width=0.465\textwidth]{rms_zcr_normal.png} }}%
+\qquad
+\subfloat[\centering RMS și ZCR pentru zgomot]{{\includegraphics[width=0.465\textwidth]{rms_zcr.png} }}%
+\caption{Comparație între RMS și ZCR pentru voce și zgomot}%
+\label{fig:f6}%
 \end{figure}

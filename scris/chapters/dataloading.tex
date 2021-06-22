@@ -1,42 +1,43 @@
 \chapter{Încărcarea datelor}
-Având în vedere formatele diferite în care informațiile extrase din fișierele audio pot fi salvate pe disc, 
+\label{section:load}
+Având în vedere formatele diferite în care informațiile extrase din fișierele audio pot fi salvate pe disc,
 același nivel de flexibilitate este necesar și la încărcarea acestor date în memorie. Nevoia de a
-implementa diferite moduri de încărcare pentru tipuri diferite de formate ale datelor a fost un rezultat al capabilităților 
-mașinilor pe care rețeaua a fost antrenată. În funcție de aceste capabilități, dar și în funcție de dimensiunea informațiilor 
-extrase, datele puteau sau nu să fie încărcate în totalitate în memoria RAM. Această problemă a fost rezolvată prin experimentarea 
-cu diferite tipuri de generatoare care încarcă datele de pe disc în timpul antrenării rețelei, scopul final fiind găsirea unei metode care 
+implementa diferite moduri de încărcare pentru tipuri diferite de formate ale datelor a fost un rezultat al capabilităților
+mașinilor pe care rețeaua a fost antrenată. În funcție de aceste capabilități, dar și în funcție de dimensiunea informațiilor
+extrase, datele puteau sau nu să fie încărcate în totalitate în memoria RAM. Această problemă a fost rezolvată prin experimentarea
+cu diferite tipuri de generatoare care încarcă datele de pe disc în timpul antrenării rețelei, scopul final fiind găsirea unei metode care
 minimizează timpul de antrenare.
 
-O schemă generală a încărcării datelor în memorie și pregătirea inputurilor de antrenare, 
+O schemă generală a încărcării datelor în memorie și pregătirea inputurilor de antrenare,
 validare și test ale rețelei este prezentată în figura \ref{fig:f13}
 
 \begin{figure}[h]
-    \caption{Procesul de încărcare al datelor în memorie}
-    \includegraphics[width=0.98\textwidth]{data load.png}
-    \centering
-    \label{fig:f13}
-\end{figure} 
+\caption{Procesul de încărcare al datelor în memorie}
+\includegraphics[width=0.98\textwidth]{data load.png}
+\centering
+\label{fig:f13}
+\end{figure}
 
-După cum a fost menționat, au existat două abordări, în funcție de dimensiunea datelor și memoria RAM disponibilă. 
+După cum a fost menționat, au existat două abordări, în funcție de dimensiunea datelor și memoria RAM disponibilă.
 În continuare sunt descrise particularitățile acestor abordări.
 
-\section{Încărcarea întreg setului de date în memorie}
-În acest caz, pipeline-ul primește ca input o instanță a unei clase derivate din clasa de bază Features Loader și, opțional, 
+\section{Încărcarea întregului set de date în memorie}
+În acest caz, pipeline-ul primește ca input o instanță a unei clase derivate din clasa de bază Features Loader și, opțional,
 un state random ce va fi utilizat la amestecarea datelor.
 
-Clasa \textit{Features Loader} se ocupă de încărcarea informațiilor din fișiere și extragerea genurilor muzicale. 
-În funcție de clasa concretă specificată, informațiile sunt încărcate din fișiere JSON, deserializate ca Tensori din fișiere binare, 
+Clasa \textit{Features Loader} se ocupă de încărcarea informațiilor din fișiere și extragerea genurilor muzicale.
+În funcție de clasa concretă specificată, informațiile sunt încărcate din fișiere JSON, deserializate ca Tensori din fișiere binare,
 sau citite ca JSON linie cu linie dintr-un fișier, iar genurile sunt extrase din numele fișierelor, respectiv din obiectul JSON citit.
-La instanțiere se specifică calea directorului sau a fișierului în care se află datele și un subset al genurilor din setul de date. 
-Opțiunea de a specifica un subset de genuri este utilizată în procesul ulterior de selecție a genurilor muzicale dezvoltat în secțiunea \ref{section:genresselection}. 
-În urma apelării funcției de încărcare se obțin trei liste ce corespund informațiilor extrase din fișierele audio prezente în setul de date, 
+La instanțiere se specifică calea directorului sau a fișierului în care se află datele și un subset al genurilor din setul de date.
+Opțiunea de a specifica un subset de genuri este utilizată în procesul ulterior de selecție a genurilor muzicale dezvoltat în secțiunea \ref{section:genresselection}.
+În urma apelării funcției de încărcare se obțin trei liste ce corespund informațiilor extrase din fișierele audio prezente în setul de date,
 genurilor și id-urilor corespunzătoare acestor informații.
 
-Fiecărui gen distinct încărcat îi este atribuit un număr întreg iar fiecare gen din listă este înlocuit cu numărul ce îi corespunde. 
-În cazul informațiilor extrase din fișierele audio, dacă mai multe tipuri de informații sunt prezente, acestea vor fi concatenate. 
+Fiecărui gen distinct încărcat îi este atribuit un număr întreg iar fiecare gen din listă este înlocuit cu numărul ce îi corespunde.
+În cazul informațiilor extrase din fișierele audio, dacă mai multe tipuri de informații sunt prezente, acestea vor fi concatenate.
 
 Setul de date obținut va fi amestecat și împărțit în trei seturi de antrenare, test și validare conform unor procente ce pot fi
-specificate. Seturile de date rezultate pot fi 
+specificate. Seturile de date rezultate pot fi
 \textit{NumPy arrays} sau \textit{tensorflow.data.Dataset} \footnote{\href{https://www.tensorflow.org/api_docs/python/tf/data/Dataset}{tensorflow.data.Dataset}}.
 
 Cu toate că utilizarea \textit{tensorflow.data.Datasets} în favoarea \textit{NumPy arrays} rezultă într-o antrenare mai rapidă a rețelei, în funcție de dimensiunea
@@ -44,42 +45,42 @@ datelor, nu este posibilă alocarea memoriei pentru crearea obiectelor \textit{t
 ca input pentru rețea sau generatorii.
 
 \section{Generatori}
-O soluție a problemei de memorie este utilizarea obiectelor \textit{tensorflow.data.Dataset} construite peste generatori. Astfel, setul de date nu 
-mai este încărcat în totalitate în memorie. Cand se folosește această abordare pipeline-ul primește un obiect al clasei \textit{File Names 
-Features Loader}, derivată din clasa \textit{Features Loader}  care încarcă doar numele tuturor fișierelor din setul de date și genurile 
-corespunzătoare. Procesul de amestecare, înlocuire a genurilor cu numere întregi și separare în date de antrenare, test și validare 
+O soluție a problemei de memorie este utilizarea obiectelor \textit{tensorflow.data.Dataset} construite peste generatori. Astfel, setul de date nu
+mai este încărcat în totalitate în memorie. Când se folosește această abordare pipeline-ul primește un obiect al clasei \textit{File Names
+Features Loader}, derivată din clasa \textit{Features Loader} care încarcă doar numele tuturor fișierelor din setul de date și genurile
+corespunzătoare. Procesul de amestecare, înlocuire a genurilor cu numere întregi și separare în date de antrenare, test și validare
 este același. Diferența constă în faptul că, după separarea datelor, sunt instanțiate trei generatoare ce se vor ocupa cu citirea
 informațiilor din fișier. Sunt create trei obiecte \textit{tensorflow.data.Dataset} pe baza generatoarelor, utilizând functia $from\_generator$
 \footnote{\href{https://www.tensorflow.org/api_docs/python/tf/data/Dataset\#from\_generator}{tensorflow.data.Dataset.from\_generator}}.
 
-\textit{tensorflow.data.Dataset} sunt optimizate pentru execuția pe GPU și permit utilizarea mecanismului de \textit{prefetch} care permite, 
-printr-un fir de execuție ce rulează în fundal, 
-aducerea în memorie a datelor înainte ca ele să fie necesare, eliminând apariția de \textit{bottlenecks}. Atfel, utilizarea \textit{tensorflow.data.Dataset} 
+\textit{tensorflow.data.Dataset} sunt optimizate pentru execuția pe GPU și permit utilizarea mecanismului de \textit{prefetch} care permite,
+printr-un fir de execuție ce rulează în fundal,
+aducerea în memorie a datelor înainte ca ele să fie necesare, eliminând apariția de \textit{bottlenecks}. Atfel, utilizarea \textit{tensorflow.data.Dataset}
 este mai eficientă decât antrenarea cu generatori
 creați ca input direct al rețelei. Datorită faptului că utilizarea \textit{tensorflow.data.Dataset} îmbunătățește timpul de antrenare al rețelei în comparație
 cu \textit{NumPy arrays}, în cazurile în care dimensiunea memoriei RAM permitea acest lucru, s-au utilizat generatori care încărcau toate datele în
-memorie și le returnau pe rând utilizând \textit{tensorflow.data.Dataset}. În acest mod, a fost rezolvată problema spațiului, mentionată anterior, 
+memorie și le returnau pe rând utilizând \textit{tensorflow.data.Dataset}. În acest mod, a fost rezolvată problema spațiului, menționată anterior,
 atunci când se alocă
 obiecte \textit{tensorflow.data.Dataset} direct pentru listele încărcate în memorie.
 
 În continuare se pot observa rezultatele experimentelor atunci când s-au utilizat modurile descrise de încărcare a datelor.
 \pagebreak
 \section{Experimente}
-Statisticile legate de timpul de antrenare al rețelei au fost obținute utilizând Tensorboard \footnote{\url{https://www.tensorflow.org/tensorboard}}. Comparațiile au fost facute pentru \textit{tensorflow.data.Dataset}
-peste generatoare cu date sub forma de \textit{Tensors} care încarcă datele progresiv (GS) 
+Statisticile legate de timpul de antrenare al rețelei au fost obținute utilizând Tensorboard \footnote{\url{https://www.tensorflow.org/tensorboard}}. Comparațiile au fost făcute pentru \textit{tensorflow.data.Dataset}
+peste generatoare cu date sub forma de \textit{Tensors} care încarcă datele progresiv (GS)
 sau care încarcă inițial toate datele în memorie (GP) și \textit{NumPy arrays}. Rezultatele sunt prezentate în tabelul \ref{table:1}
 
 \begin{table}[h!]
-    \centering
-    \begin{tabular}{||p{1.5cm} | p{2.5cm} | p{2.5cm} |p{2.5cm} |p{2.5cm}||} 
-     \hline
-     Metodă & \raggedright Timp mediu / step (ms) & \raggedright Timp de execuție GPU (ms) & \raggedright Încărcare date în GPU (ms) & Altele (ms) \\ [0.5ex] 
-     \hline\hline
-     GS & 56.7 & 19.3 & 30.1 & 6.4\\ 
-     GP & \textbf{23.0} & 17.7 & 0.1 & 5.2\\
-     NumPy & 24.9 & 18.7 & 0.1 & 6.1\\
-     \hline
-    \end{tabular}
-    \caption{Comparație între metodele de încărcare ale datelor}
-    \label{table:1}
-    \end{table}
+\centering
+\begin{tabular}{||p{1.5cm} | p{2.5cm} | p{2.5cm} |p{2.5cm} |p{2.5cm}||}
+\hline
+Metodă & \raggedright Timp mediu / step (ms) & \raggedright Timp de execuție GPU (ms) & \raggedright Încărcare date în GPU (ms) & Altele (ms) \\ [0.5ex]
+\hline\hline
+GS & 56.7 & 19.3 & 30.1 & 6.4\\
+GP & \textbf{23.0} & 17.7 & 0.1 & 5.2\\
+NumPy & 24.9 & 18.7 & 0.1 & 6.1\\
+\hline
+\end{tabular}
+\caption{Comparație între metodele de încărcare ale datelor}
+\label{table:1}
+\end{table}

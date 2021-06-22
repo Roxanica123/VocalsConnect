@@ -1,127 +1,147 @@
 \chapter{Sistemul de recomandare}
-Aplicația practică a modelului antrenat este un sistem de recomandare sub forma unei aplicații web care permite utilizatorului să încarce o 
-melodie și să primească ca recomandare alte melodii similare.
+Aplicația practică a modelului antrenat este un sistem de recomandare sub forma unei aplicații web care permite utilizatorului să încarce o
+melodie și să primească drept recomandare alte melodii similare.
 
 Când utilizatorul încarcă un fișier audio acesta este trimis sistemului de recomandare aflat pe serverul de backend.
-La pornirea serverului este instanțiat un obiect de tipul PredictionSystem. Parametrii cu care este instațiat
-sunt un rezultat al experimentelor realizate în capitolul precendent. Așadar, se specifica o dimensiune a inputului 
-pentru spectrograme Mel pentru segmente de 15 secunde și o dimensiune a outputului de 24 ce corespunde numărul 
+La pornirea serverului este instanțiat un obiect de tipul PredictionSystem. Parametrii cu care este instanțiat
+sunt un rezultat al experimentelor realizate în capitolul precedent. Așadar, se specifica dimensiunea inputului
+pentru spectrograme Mel ale segmentelor de 15 secunde și o dimensiune a outputului de 24 ce corespunde numărul
 final de genuri distincte selectate.
 
-Pipeline-ul de procesare a fișierelor primite este similar cu cel descris în capitolele 
-4 și 5. Fisierul este descărcat local pentru procesare, separat în instrumental și voce, 
+Pipeline-ul de procesare a fișierelor primite este similar cu cel descris în capitolele
+\ref{section:extraction} și \ref{section:load}. Fișierul este descărcat local pentru procesare, separat în instrumental și voce,
 segmentul audio ce conține vocea este împărțit în segmente de 15 secunde, cu offset-uri
-din secundă în secundă, apoi se extrag spectrogramele Mel și se convertesc în Tensors.
-Datele obținute sunt introduse în modelul rețelei CNN-LSTM pentru a obține vectorii de predicție.
+din secundă în secundă, apoi se extrag spectrogramele Mel și se convertesc în \textit{Tensors}.
+Datele obținute sunt introduse în modelul rețelei CNN-LSTM pentru a obține vectorii de predicție. Offset-urile mici au fost selectate
+deoarece se rezultatele au fost mai bune atunci când existau mai multe instanțe pe care să fie bazată predicția.
 
-Deoarece ultimul strat dens conectat are funcția de activare Softmax, 
-fiecare valoare este un procent, reprezentativ pentru apartenența unui
-segment la genul ce corespunde indexului din vectorul de predicție.
+Ultimul strat dens conectat are funcția de activare Softmax. Așadar fiecare valoare din vectorii de
+predicție rezultați este un procent care reprezintă gradul în care un gen se
+regăsește sau nu într-un segment.
 
 \section{Recomandare}
 
 Toate segmentele din setul de date au fost trecute prin model, iar vectorii de predicție au
-fost salvați într-un fișier, impreună cu numele segmentului ce conține genul și 
-id-ul Spotify al melodiei înițiale. La crearea serverului, obiectul PredictionSystem 
-instanțiază un obiect KDTree care încarcă vectorii de predicție, pe care îi organizează
-sub forma unui arbore KDTree, și informațiile adiționale menționate.
+fost salvați într-un fișier, împreuna cu numele segmentului ce conține genul și
+id-ul Spotify al melodiei inițiale. La crearea serverului, obiectul PredictionSystem
+instanțiază un obiect KDTree.
+Informațiile adiționale menționate sunt încărcate împreună cu toți vectorii de predicție extrași din setul de date.
+Aceștia vor fi organizați sub forma unui arbore KDTree pentru a accesa eficient vecinii lor.
 
-Odată ce au fost obținuți vectorii de predicție pentru segmente, sunt căutați cei mai 
-apropiați 3 vecini pentru fiecare vector de predicție impreună cu distanțele dintre
-vecini si vectorul de predicție. Se selectează cei mai apropiați 12 vecini după 
+Atunci când o melodie este introdusă în sistem,
+odată ce au fost obținuți vectorii de predicție pentru segmente, sunt căutați cei mai
+apropiați 3 vecini pentru fiecare vector de predicție împreuna cu distanțele dintre
+vecini si vectorul de predicție corespunzător. Se selectează cei mai apropiați 12 vecini după
 procesul ilustrat în figura \ref{fig:f20}, unde $p_{i}$ este un vector de predicție
-pentru un segment al melodiei primită ca input, $i_{ij}$ indexul vectorului de predicție 
-a unui vecin existent în setul de date, iar $d_{ij}$ este distanța dintre vectorul 
+pentru un segment al melodiei primite ca input, $i_{ij}$ indexul vectorului de predicție
+a unui vecin existent în setul de date, iar $d_{ij}$ este distanța dintre vectorul
 de predicție $p_{i}$ și vecinul cu vectorul de predicție la indexul $i_{ij}$.
 
 \begin{figure}[h]
-    \includegraphics[width=0.9\textwidth]{kdtree.png}
-    \centering
-    \captionsetup{justification=centering,font=small,labelfont=small}
-    \caption{Extragerea vecinilor din KDTree}
-    \label{fig:f20}
+\includegraphics[width=0.9\textwidth]{kdtree.png}
+\centering
+\captionsetup{justification=centering,font=small,labelfont=small}
+\caption{Extragerea vecinilor din KDTree}
+\label{fig:f20}
 
 \end{figure}
 
-Lista rezultată în figura \ref{fig:f20} este sortată după distanțele $d_{ij}$ și sunt 
+Lista rezultată în figura \ref{fig:f20} este sortată după distanțele $d_{ij}$ și sunt
 returnate id-urile ce corespund celor 12 vecini cu cele mai mici distanțe, identificate prin
-indexul $i_{ij}$ al vecinilor. Acești vecini din setul de date sunt, de fapt, melodiile distincte ce vor 
-fi recomandate, deoarece sunt cele mai similare cu segmentele primite ca input.
+indexul $i_{ij}$ al vecinilor. Acești vecini din setul de date sunt, de fapt, melodiile distincte ce vor
+fi recomandate, deoarece sunt cele mai similare cu segmentele primite ca input. Acest mod de recomandare
+are la bază intuiția că, melodii similare vor fi interpretate similar de rețea și vor avea vectori de predicție cu
+valori similare.
 
 \section{Prezicerea genurilor muzicale}
-Au fost două abordări în prezicerea genurilor muzicale.
+Se amintește faptul că inputurile sunt separate în mai multe segmente. Ca exemplu, pentru un segment de $30$, vom obține $17$ spectrograme Mel ca input pentru rețea.
+Având în vedere faptul că pentru o melodie introdusă în sistem nu rezultă un singur vector de predicție, au fost două abordări în prezicerea genurilor muzicale.
 
-Prima abordare a fost calcularea genului muzical pentru fiecare segment, ca fiind genul cu cel mai mare procent din 
-vectorul de predicție. Astfel, în funcție de numărul de segmente care au fost clasificate ca aparținând unui anumit gen, 
+Prima abordare a fost calcularea genului muzical pentru fiecare segment în mod clasic, ca fiind genul cu cel mai mare procent din
+vectorul de predicție. Astfel, în funcție de numărul de segmente care au fost clasificate ca aparținând unui anumit gen,
 s-au calculat procentele pentru fiecare gen prezis.
 
-A doua abordare a fost adunarea tuturor vectorilor de predicție obținuți. Se selectează cele mai mari 3 valori din vectorul sumă obținut, 
-corespunzătoare genurilor predominante și se calculează procentul lor ca fiind valoare impărțită la suma valorilor din vector. Restul 
+A doua abordare a fost adunarea tuturor vectorilor de predicție obținuți. Se selectează cele mai mari 3 valori din vectorul sumă obținut,
+corespunzătoare genurilor predominante. Restul
 genurilor sunt incluse în categoria $others$. Chiar dacă
-rezultatele sunt similare cu cele obținute utilizând prima metodă, această 
-metodă are performanțe mai bune atunci cand diferențele dintre procentele din vectorii de predicție obținuți nu sunt mari.
+rezultatele sunt similare cu cele obținute utilizând prima metodă, această
+metodă are performanțe mai bune atunci când diferențele dintre procentele din vectorii de predicție obținuți nu sunt mari. Se consideră exemplul din figura \ref{fig:f36}.
+Dacă prima metodă ar fi folosită procentele obținute ar fi $66.6\%$ \textit{r-n-b} și $33.3\%$ \textit{pop}. Cu toate acestea, în vectorul sumă se
+observă predominanța genului \textit{pop} cu un procent de $40\%$, urmat de \textit{r-n-b} cu $31\%$.
+
+\begin{figure}[h]
+\includegraphics[width=0.5\textwidth]{mapping.png}
+\centering
+\captionsetup{justification=centering,font=small,labelfont=small}
+\caption{Exemplu de vectori de predicție și vector sumă}
+\label{fig:f36}
+
+\end{figure}
+
+\pagebreak
 
 \section{Experimente}
 \label{section:kids}
 Un prim experiment a fost compararea genurilor prezise de sistem cu cele reale pentru segmente existente în setul de date. A fost observată
-o problemă în cazul genului $kids$. Un număr mare de segmente erau fals prezise ca aprținând acestui gen dupa cum se observa în figura \ref{fig:f21}. 
+o problemă în cazul genului $kids$. Un număr mare de segmente erau fals prezise ca aparținând acestui gen după cum se observa în figura \ref{fig:f21}.
+
 \begin{figure}[h]
-    \includegraphics[width=\textwidth]{confusion_better.png}
-    \centering
-    \captionsetup{justification=centering,font=small,labelfont=small}
-    \caption{Genurile prezise inițial de sistem}
-    \label{fig:f21}
+\includegraphics[width=\textwidth]{confusion_better.png}
+\centering
+\captionsetup{justification=centering,font=small,labelfont=small}
+\caption{Genurile prezise inițial de sistem}
+\label{fig:f21}
 
 \end{figure}
+
+Ca urmare a acestui rezultat, genul $kids$ a fost eliminat din setul de date, rețeaua a fost re-antrenată și s-a rulat din nou experimentul.
+Rezultatele pentru genurile finale selectate sunt ilustrate în figura \ref{fig:f22}. Genul predominant a fost identificat corect în procent de $73.94\%$, iar
+în $90.75\%$ dintre cazuri genul real al segmentului se afla printre cele $3$ genuri predominante prezise de sistem.
 \pagebreak
-
-Ca urmare a acestui rezultat, genul $kids$ a fost eliminat din setul de date, rețeaua a fost re-antrenată și s-a rulat din nou experimentul. 
-Rezultatele pentru genurile finale selectate sunt ilustrate în figura \ref{fig:f12}
-
 \begin{figure}[h]
-    \includegraphics[width=0.9\textwidth]{confusion_without_kids_better.png}
-    \centering
-    \captionsetup{justification=centering,font=small,labelfont=small}
-    \caption{Genurile prezise de sistem după eliminarea genului kids}
-    \label{fig:f22}
+\includegraphics[width=0.85\textwidth]{confusion_without_kids_better.png}
+\centering
+\captionsetup{justification=centering,font=small,labelfont=small}
+\caption{Genurile prezise de sistem după eliminarea genului kids}
+\label{fig:f22}
 \end{figure}
 
 Un alt experiment cu scopul de a identifica abilitatea sistemului de a recomanda melodii similare a fost calcularea melodiilor recomandate
-care fac parte din același album al unui artist pentru 
-un segment. Rezultatele pot si observate în figura \ref{fig:f23}. 
+care fac parte din același album al unui artist pentru
+un segment. Rezultatele pot si observate în figura \ref{fig:f23}.
 
 \begin{figure}[h]
-    \includegraphics[width=0.7\textwidth]{songs from the same album_without_kids.png}
-    \centering
-    \captionsetup{justification=centering,font=small,labelfont=small}
-    \caption{Numărul de melodii recomandate din acelasi album}
-    \label{fig:f23}
+\includegraphics[width=0.85\textwidth]{songs from the same album_without_kids.png}
+\centering
+\captionsetup{justification=centering,font=small,labelfont=small}
+\caption{Numărul de melodii recomandate din acelasi album}
+\label{fig:f23}
 \end{figure}
 
-Experimentul a fost rulat pentu 119 segmente existente în setul de date. În 80 de cazuri a fost recomandată doar melodia din setul de date din care
-face parte segmentul, în 20 de cazuri printe melodiile recomandate se afla melodia inițială și altă melodie din același album, iar în 9 cazuri, mai mult de 
+Experimentul a fost rulat pentru 119 segmente existente în setul de date. În 80 de cazuri a fost recomandată doar melodia din setul de date din care
+face parte segmentul, în 20 de cazuri printre melodiile recomandate se afla melodia inițială și altă melodie din același album, iar în 9 cazuri, mai mult de
 2 melodii din același album au fost recomandate.
 
-Segmentele descărcate utilizând Spotify API au doar 30 de secunde. Un subset de 47 de melodii dintre segmentele utilizate pentru experimentul anterior au fost 
-descărcate în întregime, iar experimentul a fost rulat din nou. Rezultatele pot fi observate în figurile \ref{fig:f24} și \ref{fig:f25}
+Segmentele descărcate utilizând Spotify API au doar 30 de secunde. Un subset de 47 de melodii dintre segmentele utilizate pentru experimentul anterior au fost
+descărcate în întregime, iar experimentul a fost rulat din nou. Rezultatele pot fi observate în figurile \ref{fig:f24} și \ref{fig:f25}. Genul predominant a fost identificat corect în procent de $57.44\%$, iar
+în $80.85\%$ dintre cazuri genul real al segmentului se afla printre cele $3$ genuri predominante prezise de sistem.
 
 \begin{figure}[h]
-    \centering
-    \includegraphics[width=0.9\textwidth]{confusion_full_songs_better_without_kids.png}
-    \captionsetup{justification=centering,font=small,labelfont=small}
-    \caption{Genurile prezise de sistem pentru melodiile întregi}
-    \label{fig:f24}
+\centering
+\includegraphics[width=0.9\textwidth]{confusion_full_songs_better_without_kids.png}
+\captionsetup{justification=centering,font=small,labelfont=small}
+\caption{Genurile prezise de sistem pentru melodiile întregi}
+\label{fig:f24}
 \end{figure}
 
 \begin{figure}[h]
-    \centering
-    \includegraphics[width=0.65\textwidth]{songs_from_the_same_album_full_songs_without_kids.png}
-    \captionsetup{justification=centering,font=small,labelfont=small}
-    \caption{Numărul de melodii recomandate din acelasi album pentru melodiile întregi}
-    \label{fig:f25}
+\centering
+\includegraphics[width=0.8\textwidth]{songs_from_the_same_album_full_songs_without_kids.png}
+\captionsetup{justification=centering,font=small,labelfont=small}
+\caption{Numărul de melodii recomandate din acelasi album pentru melodiile întregi}
+\label{fig:f25}
 \end{figure}
 
-În 31 dintre cazuri, segmentul existent în setul de date din melodia întreagă nu a fost identificat. Acest lucru este datorat offset-ului utlizat 
-pentru selectarea segmentului, segmentele nu se suprapun perfect peste cel existent in setul de date și se găsesc alte melodii cu segmente mai
+În 31 dintre cazuri, segmentul existent în setul de date din melodia întreagă nu a fost identificat. Acest lucru poate fi datorat offset-ului utilizat de Spotify
+pentru selectarea segmentului, segmentele nu se suprapun perfect peste cel existent in setul de date deci se găsesc alte melodii cu segmente mai
 similare decât cea originală.
-

@@ -1,27 +1,37 @@
-\chapter{Concluzii} 
-Având în vedere problema abordată, încadrarea segmentelor muzicale într-un anumit gen, utilizând doar elementele vocale, experimentele din capitolul 
+\chapter*{Concluzii} 
+\addcontentsline{toc}{chapter}{Concluzii}
+Având în vedere problema abordată, încadrarea segmentelor muzicale într-un anumit gen, utilizând doar elementele vocale, această lucrare a abordat
+trei clasificatori, o rețea neuronală convoluțională, o rețea neuronală recurentă LSTM și o rețea hibrid ce combină elementele primelor două rețele.
+Rezultatele obținute au fost progresiv mai bune. Pentru 25 de genuri, rețeaua convoluțională a ajuns la o acuratețe de $34.66\%$, rețeaua LSTM a ajuns
+la o acuratețe mai bună cu peste $6$ procente, iar a treia rețea abordată a avut cele mai bune rezultate. Așadar, experimentele din capitolul
 \ref{section:experiments} dovedesc faptul că, utilizarea unei rețele hibrid compusă dintr-o rețea neuronală convolutională și o rețea recurentă LSTM
-ce primește ca input spectogramele Mel ale semnalelor audio, rivalizează algoritmii de clasificare întalniți în literatură. 
+ce primește ca input spectrogramele Mel ale semnalelor audio, rivalizează algoritmii de clasificare întâlniți în literatură.
 
-\cite{vocal} propune, pentru rezolvarea aceleiași probleme, un algorimn SVM. Rezultatul obținut pe un set de date în care elementele vocale au fost separate de instrumental a fost o acuratețe de $46.9\%$ pentru 8 genuri distincte. 
-Astfel, utilizarea spectogramelor Mel și a rețelei neuronale menționată, dar si utilizarea setului de date 
-construit, a dus la o acuratețe mai bună, $61.4\%$ pentru $25$ de genuri muzicale. 
+\cite{vocal} propune, pentru rezolvarea aceleiași probleme, un algoritm SVM. Rezultatul obținut pe un set de date în care
+elementele vocale au fost separate de instrumental a fost o acuratețe de $46.9\%$ pentru 8 genuri distincte.
+Astfel, utilizarea spectrogramelor Mel și a rețelei neuronale menționată, dar si utilizarea setului de date
+construit, a dus la o acuratețe mai bună, $61.4\%$ pentru $25$ de genuri muzicale.
 
+În ceea ce privește sistemul de recomandare, rețeaua CNN-LSTM a fost utilizată pentru a obține predicțiile pentru melodii noi. Pentru a testa acuratețea de
+prezicere a sistemului,
+au fost introduse ca input $119$ segmente existente în setul de date și $47$ de melodii întregi pentru care există segmente în setul de date. În urma
+experimentelor din capitolul \ref{section:kids} s-a arătat faptul că pentru melodiile întregi, genul predominant este identificat corect în procent de $57.44\%$, iar
+în $80.85\%$ din cazuri genul melodiei se regăsește în genurile prezise. Pentru segmente deja existente în setul de date procentele sunt $73.94\%$, respectiv $90.75\%$.
 
+Pentru a testa similaritatea melodiilor sugerate de sistem pe baza vectorilor de predicție,
+au fost numărate melodiile recomandate care se află în același album cu segmentele introduse. După cum este ilustrat în \ref{fig:f23}, în $32.77\%$ din cazuri,
+una sau mai multe melodii din același album sunt sugerate. Astfel, este confirmată, într-o anumită măsură, capacitatea sistemului de a recunoaște artiști
+sau stiluri similare.
 
-
-
-\chapter{Direcții viitoare}
-\section{Setul de date}
--de adaugat
-Un prim pas în obținerea unor rezultate mai bune este construirea unui set de date ce conține mai multe date ce conține fișiere audio acapella etichetate manual. 
-Astfel, se reduc zgomotele rezultate în urma separării, se rezolvă problema pierderii 
-elementelor de rimt rezultate în urma eliminării porțiunilor de linște și prezicerea nu se mai bazează pe clasificarea genurilor oferită de Spotify care 
+\section{Direcții viitoare}
+Un prim pas în obținerea unor rezultate mai bune este construirea unui set de date ce conține mai multe date ce conține fișiere audio acapella etichetate manual.
+Astfel, se reduc zgomotele rezultate în urma separării, se rezolvă problema pierderii
+elementelor de rimt rezultate în urma eliminării porțiunilor de liniște și prezicerea nu se mai bazează pe clasificarea genurilor oferită de Spotify care
 poate prezenta un factor de instabilitate.
-\section{Arhitectura rețelei}
-Un alt factor care pote fi îmbunătățit este arhitectura rețelei utilizată. În funcție de dimensiunea setului de date, se pot utiliza rețele de dimensiuni mai 
+
+Un alt factor care poate fi îmbunătățit este arhitectura rețelei utilizată. În funcție de dimensiunea setului de date, se pot utiliza rețele de dimensiuni mai
 mare care, aplicate pe datele curente ar converge rapid, ajungând la overfitting.
-\section{Noi funcționalități}
-Având in vedere ideea de recomandare de melodii cu voci similare celei introduse ca input, sistemul de recomandare poate fi extins pentru a lua în calcul 
-mai multe aspecte decât genul în care se încadrează vocea. Aceste noi funcționalități pot include identificarea genului vocii, identificarea range-ului 
+
+Având in vedere ideea de recomandare de melodii cu voci similare celei introduse ca input, sistemul de recomandare poate fi extins pentru a lua în calcul
+mai multe aspecte decât genul în care se încadrează vocea. Aceste noi funcționalități pot include identificarea genului vocii, identificarea range-ului
 vocal și chiar procesarea discursului pentru a sugera melodii care au un mesaj similar.
